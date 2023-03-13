@@ -7,9 +7,9 @@ import {Observable } from "rxjs";
 
 export class chatService{
 
-    //private socket =socketIOClient('https://system.udify.io');
+    private socket =socketIOClient('https://system.udify.io');
 
-    private socket =socketIOClient('http://localhost:8000');
+    //private socket =socketIOClient('http://localhost:8000');
 
 
     constructor(){}
