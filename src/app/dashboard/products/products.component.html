@@ -1,0 +1,147 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b a-i-c">
+    <h3 class="dash-title">PRODUCTS</h3>
+    <a [routerLink]="['/dashboard/add-product']" class="cstm-btn"
+      *ngIf="modelS.allStores.length">Add New Product</a
+    >
+  </div>
+  <!-- <div nz-row>
+    <div nz-col nzSpan="8">
+      <div>
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+          <input type="text" nz-input placeholder="Search" [(ngModel)]="searchtext" />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+          <button nz-button nzType="primary" nzSearch (click)="getProducts()">
+            <i nz-icon nzType="search"></i>
+          </button>
+        </ng-template>
+      </div>
+ 
+    </div>
+    <div nz-col nzSpan="16">
+      <nz-range-picker [nzFormat]="dateFormat" [(ngModel)]="filterDate" (ngModelChange)="getProducts()"></nz-range-picker>
+    </div>
+  </div> -->
+  <div class="table-filter-row d-f j-c-s-b mb-common" *ngIf="modelS.allStores.length">
+    <div class="input_wrap">
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input
+          type="text"
+          class="form-control"
+          nz-input
+          placeholder="Search"
+          [(ngModel)]="searchtext"
+        />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button class="search-btn" nzSearch (click)="getProducts()">
+          <i nz-icon nzType="search"></i>
+        </button>
+      </ng-template>
+    </div>
+    <div class="datepicker-group">
+      <nz-range-picker
+        [nzFormat]="dateFormat"
+        [(ngModel)]="filterDate"
+        (ngModelChange)="getProducts()"
+      ></nz-range-picker>
+    </div>
+    <div class="datepicker-group cstm-select">
+      <nz-select [(ngModel)]="dateRange" placeholder="Date Range" (ngModelChange)="dateRangeChanges()">
+        <nz-option nzValue="" nzLabel="Date Range" nzDisabled></nz-option>
+        <nz-option nzValue="week" nzLabel="This Week"></nz-option>
+        <nz-option nzValue="month" nzLabel="This Month"></nz-option>
+        <nz-option nzValue="year" nzLabel="This Year"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+
+  <div class="dash-content-body products-p">
+    <div class="table-card">
+      <nz-table
+        class="table dash-table"
+        #productsTable
+        [nzData]="products"
+        [nzShowPagination]="false"
+      >
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Store</th>
+            <th>Vendor</th>
+            <th>Stock</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of productsTable.data">
+            <td>{{ prod?.id || "N/A" }}</td>
+
+            <td>
+              <h6>{{ prod?.title || "N/A" }}</h6>
+            </td>
+            <td>
+              <div class="d-flex">
+                <img
+                  src="{{ getProductImage(prod) }}"
+                  onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                  alt=""
+                  *ngIf="prod.images"
+                />
+                <h6 *ngIf="!prod.images">N/A</h6>
+              </div>
+            </td>
+            <td>{{ prod?.product_type || "N/A" }}</td>
+            <td>{{ prod?.price || "N/A" }}</td>
+            <td>{{ getStoreName(prod) }}</td>
+            <td>{{ prod?.vendor || "N/A" }}</td>
+            <td class="green" *ngIf="prod.stock">
+              <span class="badge bg-success">Instock</span>
+            </td>
+            <td class="green" *ngIf="!prod.stock">
+              <span class="badge bg-danger">Out of stock</span>
+            </td>
+            <td>
+              <div class="table-action d-f a-i-c">
+                <a
+                  [routerLink]="['/dashboard/product', prod?.id]"
+                  class="icon-btn"
+                  ><i class="fas fa-eye"></i
+                ></a>
+                <a
+                  [routerLink]="['/dashboard/edit-product', prod?.id]"
+                  class="icon-btn"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <a
+                  href="javascript:void(0);"
+                  class="icon-btn danger-icon"
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure delete this product?"
+                  (nzOnConfirm)="confirmDelete(prod)"
+                  ><i class="fas fa-trash-alt"></i
+                ></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-pagination
+        [nzPageIndex]="page"
+        [nzTotal]="total"
+        (nzPageIndexChange)="paginate($event)"
+      ></nz-pagination>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

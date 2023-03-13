@@ -1,0 +1,6 @@
+@import url(../vendor.component.css);
+
+.prd_ty_del{
+    display: flex; 
+    align-items: baseline;
+}

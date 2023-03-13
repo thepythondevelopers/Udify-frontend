@@ -1,0 +1,81 @@
+.dotted-image1 {
+    position: absolute;
+    top: -210px;
+    width: 440px;
+    left: -28px;
+    clip: rect(80px, 700px, 660px, 0px);
+}
+.Polygon1{
+    box-sizing: border-box;
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    left: 612px;
+    top: 144px;
+}
+.Polygon2{
+    box-sizing: border-box;
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    left: 103px;
+    top: 2313px;
+}
+.Ellipse13{
+    box-sizing: border-box;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: -7px;
+    top: 774px;
+}
+.Ellipse12{
+    box-sizing: border-box;
+    position: absolute;
+    width: 93px;
+    height: 93px;
+    left: 1440px;
+    top: 959px;
+}
+.thread3{
+    position: absolute;
+    width: 760px;
+    height: 103.72px;
+    left: 767px;
+    top: 817.45px;
+}
+.thread2{
+    position: absolute;
+    width: 234px;
+    height: 136px;
+    left: 333px;
+    top: -20px;
+}
+
+.thread1{
+    position: absolute;
+    width: 234px;
+    height: 136px;
+    left: 531px;
+    top: 103px;
+}
+
+.cstm-contact-us-btn {
+    width: 205px;
+    height: 52px;
+    left: 231px;
+    top: 5858px;
+    background: linear-gradient(180deg, #363636 0%, rgba(54, 54, 54, 0.75) 100%);
+    border-radius: 170px;
+    color: #FFFFFF;
+    border: none;
+}
+.dotted-image2{
+    position: absolute;
+    top: 130px;
+    left: 380px;
+    clip: rect(0px, 700px, 580px, 100px);
+}
+.img-fluid{
+    position: relative;
+}

@@ -1,0 +1,40 @@
+<nz-layout>
+  <nz-layout>
+    <nz-list nzItemLayout="horizontal">
+      <nz-list-item *ngFor="let prod of cartItem" class="cart_list_item">
+        <nz-list-item-meta
+          nzAvatar="{{
+            prod.images ? prod.images[0] : 'assets/images/box.png'
+          }}"
+        >
+          <nz-list-item-meta-title>
+            <a href="javascript:void(0);">{{ prod?.title }}</a>
+          </nz-list-item-meta-title>
+          <nz-list-item-meta-description>
+            {{ prod?.product_type }}
+          </nz-list-item-meta-description>
+        </nz-list-item-meta>
+        <ul nz-list-item-actions>
+          <nz-list-item-action>
+            <a (click)="removeCart(prod)" class="delete_icon">
+              <span class="material-icons"> delete </span>
+            </a>
+          </nz-list-item-action>
+        </ul>
+      </nz-list-item>
+      <nz-list-empty *ngIf="!cartItem.length"></nz-list-empty>
+    </nz-list>
+  </nz-layout>
+</nz-layout>
+<nz-footer class="cart_footer" *ngIf="cartItem.length">
+  <div class="cart_footer_container text-right">
+    <button nz-button class="btn_custom_simple" (click)="close()">Close</button>
+    <button nz-button class="btn_custom_simple ml-10" (click)="checkout()">Add to catalog</button>
+  </div>
+</nz-footer>
+<!-- <ngx-ui-loader #loading
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader> -->

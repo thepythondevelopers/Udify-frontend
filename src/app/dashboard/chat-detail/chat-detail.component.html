@@ -1,0 +1,91 @@
+<div class="chat_detail_outer">
+  <div class="chat_messages_outer custom-scroll" #scrollMe>
+    <div class="center_spinner" *ngIf="loading">
+      <nz-spin nzTip="Loading..."> </nz-spin>
+    </div>
+    <div *ngIf="!loading && messages.length">
+      <div *ngFor="let group of messages">
+        <div class="chat_group_label">
+          <span class="chat_label_date">{{
+            group?._id | date: "dd/MM/yyyy"
+          }}</span>
+        </div>
+        <div *ngFor="let message of group.doc">
+          <div class="left_message_contain" *ngIf="message.send_by != user._id">
+            <span class="message_name_timer"
+              >{{ chat?.first_name }} {{ chat?.last_name }},
+              {{ message?.createdAt | timeAgo }}</span
+            >
+            <div class="chat_message">
+              {{ message?.message }}
+            </div>
+          </div>
+          <div
+            class="right_message_contain"
+            *ngIf="message.send_by == user._id"
+          >
+            <span class="message_name_timer">{{
+              message?.createdAt | timeAgo
+            }}</span>
+            <div class="chat_message">
+              {{ message?.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let item of messageArray">
+        <div class="left_message_contain" *ngFor="let whoom_to of send_to_Array">
+          <div style="width: 560px;" *ngFor="let whoom_by of send_by_Array">
+            <span class="message_name_timer" *ngIf="whoom_to == user._id && whoom_by == sup_id"
+            >{{ chat?.first_name }} {{ chat?.last_name }},
+            Just now</span
+          >
+          <div class="chat_message" *ngIf="whoom_to == user._id && whoom_by == sup_id">
+            {{ item }}
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="empty_message_div" *ngIf="!loading && !messages.length">
+      <nz-empty
+        [nzNotFoundContent]="'No messages yet, Start the conversation!'"
+      ></nz-empty>
+    </div>
+  </div>
+
+  <div class="chat_message_sender">
+    <div class="message_send_btns">
+      <div class="message_input_container">
+        <input
+          nz-input
+          placeholder="Type a messaae"
+          nzSize="large"
+          [(ngModel)]="message"
+          [disabled]="!isloaded"
+        />
+      </div>
+      <div class="message_btns_container">
+        <div class="btn_icon send_message_btn" (click)="sendMessage()">
+          <span nz-icon nzType="send" nzTheme="outline"></span>
+        </div>
+        <!-- <div class="btn_icon attach_message_btn">
+          <span nz-icon nzType="paper-clip" nzTheme="outline"></span>
+        </div> -->
+        <div class="btn_icon attach_message_btn" (click)="reloadChat()">
+          <span nz-icon nzType="reload" nzTheme="outline"></span>
+        </div>
+        <div class="btn_icon send_message_btn" (click)="scrollToBottom()"><i class="fa fa-angle-down"></i>
+          <div *ngFor="let item of messageArray">
+          <div *ngFor="let whoom_to of send_to_Array">
+            <div *ngFor="let whoom_by of send_by_Array">
+              <div *ngIf="whoom_to == user._id && whoom_by == sup_id">
+                <span class="nf" *ngFor="let mn of messageNotification"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

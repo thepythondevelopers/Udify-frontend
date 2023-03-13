@@ -1,0 +1,102 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b mb-5">
+    <h3 class="dash-title">
+      {{ id.length ? "Edit Knoeledgebase" : "Add Knoeledgebase" }}
+    </h3>
+    <!-- <a href="javascript:void(0);" class="cstm-btn">Add New Customer</a> -->
+  </div>
+  <div class="dash-content-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="dash-card">
+          <div class="dash-head">
+            <div class="dash-body">
+              <form [formGroup]="addForm" (ngSubmit)="submitForm()">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-label">Title</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="title"
+                      />
+                      <div
+                        *ngIf="
+                          addForm.get('title').invalid &&
+                          addForm.get('title').touched
+                        "
+                        class="input-error"
+                      >
+                        <div *ngIf="addForm.get('title').errors.required">
+                          Title is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-label">Category</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="category"
+                      />
+                      <div
+                        *ngIf="
+                          addForm.get('category').invalid &&
+                          addForm.get('category').touched
+                        "
+                        class="input-error"
+                      >
+                        <div *ngIf="addForm.get('category').errors.required">
+                          Category is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-label">Description</label>
+                      <!-- <textarea
+                            type="text"
+                            class="form-control"
+                            formControlName="description"
+                          ></textarea> -->
+                      <div id="editor" formControlName="description"></div>
+                      <div
+                        *ngIf="
+                          addForm.get('description').invalid &&
+                          addForm.get('description').touched
+                        "
+                        class="input-error"
+                      >
+                        <div *ngIf="addForm.get('description').errors.required">
+                          Description is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="btn-wrap mt-4">
+                  <button type="button" class="cstm-btn" (click)="submitForm()">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-ui-loader
+    [fgsType]="api?.loaderType"
+    [fgsColor]="api?.loaderColor"
+    [pbColor]="api?.loaderColor"
+    [fgsSize]="'80'"
+  ></ngx-ui-loader>
+</div>

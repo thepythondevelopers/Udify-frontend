@@ -1,0 +1,1046 @@
+<div class="area">
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+
+<!----------------------------Become a partner banner start------------------------>
+<section class="partner">
+  <div class="container">
+    <div
+      class="row d-flex justify-content-center align-items-center text-center pt-5 pb-5"
+    >
+      <div
+        class="col-md-12 col-sm-12 animate__fadeInLeft animate__animated pt-5 pb-5"
+        data-animation="fadeILeft"
+      >
+        <ul class="list-unstyled d-flex justify-content-center banner-links">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">.</a>
+          </li>
+          <li class="nav-item">
+            <a class="bcap nav-link" href="Become-a-partner.html"
+              >Pricing & Plans
+            </a>
+          </li>
+        </ul>
+        <h2>{{cmsService.pricingPlans.section1.heading1}}</h2>
+        <p>{{cmsService.pricingPlans.section1.heading2}}</p>
+        <!-- <span>Save over 30 hours a month with Udify.</span>
+        <p><span>10% OFFUdify</span>With Annual License</p> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!----------------------------Become a partner banner start------------------------>
+
+<section class="pricing pricing2 mt-53">
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-md-12 col-sm-12 col-lg-12 text-center animate__bounceIn animate__animated"
+        data-animation="bounceIn"
+      >
+        <span class="small-heading">{{cmsService.pricingPlans.section2.heading1}}</span>
+        <h2 class="mw mt-20">{{cmsService.pricingPlans.section2.heading2}}</h2>
+        <nav class="mt-53 mb-53 pb-4">
+          <div
+            class="nav nav-tabs justify-content-center"
+            id="nav-tab"
+            role="tablist"
+          >
+            <a
+              class="nav-item nav-link"
+              [ngClass]="{'active' : pricingTab == 'basic'}"
+              id="nav-home-tab"
+              data-toggle="tab"
+              (click)="pricingTab = 'basic'"
+              role="tab"
+              aria-controls="nav-home"
+              aria-selected="true"
+              >Basic Membership</a
+            >
+            <!-- <a
+              class="nav-item nav-link"
+              [ngClass]="{'active' : pricingTab == 'popular'}"
+              id="nav-profile-tab"
+              data-toggle="tab"
+              (click)="pricingTab = 'popular'"
+              role="tab"
+              aria-controls="nav-profile"
+              aria-selected="false"
+              >Most Popular</a
+            >
+            <a
+              class="nav-item nav-link"
+              [ngClass]="{'active' : pricingTab == 'enterprise'}"
+              id="nav-contact-tab"
+              data-toggle="tab"
+              (click)="pricingTab = 'enterprise'"
+              role="tab"
+              aria-controls="nav-contact"
+              aria-selected="false"
+              >Enterprise Membership</a
+            > -->
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent" *ngIf="pricingTab == 'basic'">
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="row">
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+                *ngFor="let plan of plans; let i = index;"
+                (click)="purchasePlan(plan)"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">{{plan?.name}}</h3>
+                    <h4>${{plan?.price}}<span>/Month</span></h4>
+                  </div>
+                  <!-- <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div> -->
+                  <div class="pricing_body" [innerHtml]="plan?.features">
+                    <!-- <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul> -->
+                  </div>
+                </div>
+              </div>
+              <!-- <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Basic Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Basic Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <!-- <div
+            class="tab-pane fade"
+            id="nav-profile"
+            role="tabpanel"
+            aria-labelledby="nav-profile-tab"
+          >
+            <div class="row">
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Basic Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Basic Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Basic Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-contact"
+            role="tabpanel"
+            aria-labelledby="nav-contact-tab"
+          >
+            <div class="row">
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Basic Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Basic Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Basic Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+        <!-- <div class="tab-content" id="nav-tabContent" *ngIf="pricingTab == 'popular'">
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="row">
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Most Popular</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Most Popular</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Most Popular</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-profile"
+            role="tabpanel"
+            aria-labelledby="nav-profile-tab"
+          >
+            <div class="row">
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Most Popular</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Most Popular</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Most Popular</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-contact"
+            role="tabpanel"
+            aria-labelledby="nav-contact-tab"
+          >
+            <div class="row">
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Most Popular</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Most Popular</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Most Popular</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="nav-tabContent" *ngIf="pricingTab == 'enterprise'">
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="row">
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Enterprise Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Enterprise Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Enterprise Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-profile"
+            role="tabpanel"
+            aria-labelledby="nav-profile-tab"
+          >
+            <div class="row">
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Enterprise Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Enterprise Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Enterprise Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-contact"
+            role="tabpanel"
+            aria-labelledby="nav-contact-tab"
+          >
+            <div class="row">
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Enterprise Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Enterprise Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-sm-12 col-lg-4 text-center animate__bounceIn animate__animated"
+                data-animation="bounceIn"
+              >
+                <div class="pricing_cards">
+                  <div class="pricing_header">
+                    <h3 class="bottom-line">Enterprise Membership</h3>
+                    <h4>$49<span>/Month</span></h4>
+                  </div>
+                  <div class="pricing_footer">
+                    <a class="btn buy-btn">Start 10 - Day Free Trial</a>
+                  </div>
+                  <div class="pricing_body">
+                    <ul>
+                      <li>Up To 2 Shopify Stores</li>
+                      <li>Basic Analytics Suite</li>
+                      <li>Product Management Suite</li>
+                      <li>Order Management Suite</li>
+                      <li>App Integrations</li>
+                      <li>1 User</li>
+                      <li>Basic Vendor Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div
+        class="col-md-6 col-sm-12 col-lg-4 animate__bounceIn animate__animated pt-5"
+        data-animation="bounceIn"
+      >
+        <div class="box">
+          <i class="fas fa-dollar-sign"></i>
+          <h4>{{cmsService.pricingPlans.section3.heading1}}</h4>
+          <p>
+            {{cmsService.pricingPlans.section3.heading2}}
+          </p>
+        </div>
+      </div>
+      <div
+        class="col-md-6 col-sm-12 col-lg-4 animate__bounceIn animate__animated pt-5"
+        data-animation="bounceIn"
+      >
+        <div class="box">
+          <i class="fas fa-dollar-sign"></i>
+          <h4>{{cmsService.pricingPlans.section4.heading1}}</h4>
+          <p>
+            {{cmsService.pricingPlans.section4.heading2}}
+          </p>
+        </div>
+      </div>
+      <div
+        class="col-md-6 col-sm-12 col-lg-4 animate__bounceIn animate__animated pt-5"
+        data-animation="bounceIn"
+      >
+        <div class="box">
+          <i class="fas fa-dollar-sign"></i>
+          <h4>{{cmsService.pricingPlans.section5.heading1}}</h4>
+          <p>
+            {{cmsService.pricingPlans.section5.heading2}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing pricing2 mt-53">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 text-center mb-80">
+        <span class="small-heading">{{cmsService.pricingPlans.section6.heading1}}</span>
+        <h2 class="mt-20">{{cmsService.pricingPlans.section6.heading2}}</h2>
+      </div>
+      <div class="col-md-6 col-sm-12 col-lg-6">
+        <img src="assets/images/faq.png" alt="img" class="img-fluid" />
+      </div>
+      <div class="col-md-6 col-sm-12 col-lg-6 faq-collaps">
+        <div
+          class="panel-group"
+          id="accordion"
+          role="tablist"
+          aria-multiselectable="true"
+        >
+          <div class="panel panel-default">
+            <div class="panel-heading" id="headingOne" role="tab">
+              <h4 class="panel-title">
+                <a
+                  role="button"
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                  >{{cmsService.pricingPlans.section6.heading3}}<i
+                    class="pull-right fa fa-plus"
+                  ></i
+                ></a>
+              </h4>
+            </div>
+            <div
+              class="panel-collapse collapse in"
+              id="collapseOne"
+              role="tabpanel"
+              aria-labelledby="headingOne"
+            >
+              <div class="panel-body">
+                <p>
+                  {{cmsService.pricingPlans.section6.heading4}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" id="headingTwo" role="tab">
+              <h4 class="panel-title">
+                <a
+                  class="collapsed"
+                  role="button"
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                  >{{cmsService.pricingPlans.section6.heading5}}<i
+                    class="pull-right fa fa-plus"
+                  ></i
+                ></a>
+              </h4>
+            </div>
+            <div
+              class="panel-collapse collapse"
+              id="collapseTwo"
+              role="tabpanel"
+              aria-labelledby="headingTwo"
+            >
+              <div class="panel-body">
+                <p>
+                  {{cmsService.pricingPlans.section6.heading6}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" id="headingThree" role="tab">
+              <h4 class="panel-title">
+                <a
+                  class="collapsed"
+                  role="button"
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                  >{{cmsService.pricingPlans.section6.heading7}}<i
+                    class="pull-right fa fa-plus"
+                  ></i
+                ></a>
+              </h4>
+            </div>
+            <div
+              class="panel-collapse collapse"
+              id="collapseThree"
+              role="tabpanel"
+              aria-labelledby="headingThree"
+            >
+              <div class="panel-body">
+                <p>
+                  {{cmsService.pricingPlans.section6.heading8}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <nz-collapse >
+          <nz-collapse-panel
+            *ngFor="let panel of panels"
+            [nzHeader]="panel.name"
+            [nzActive]="panel.active"
+            [nzDisabled]="panel.disabled"
+            [nzExpandedIcon]="'double-right'"
+          >
+            <p style="margin:0;">
+              A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome
+              guest in many households across the world.
+            </p>
+            <ng-template #expandedIcon let-active>
+              {{ active }}
+              <i nz-icon nzType="caret-right" class="ant-collapse-arrow" [nzRotate]="p.nzActive ? 90 : -90"></i>
+            </ng-template>
+          </nz-collapse-panel>
+        </nz-collapse> -->
+      </div>
+    </div>
+  </div>
+</section>

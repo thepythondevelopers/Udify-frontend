@@ -1,0 +1,21 @@
+<section class="forgot-pop">
+  <div class="container">
+    <h4 class="mb-3">Forgot tracking ID?</h4>
+
+    <label
+      >No worries! Enter your Email address and we will send you your tracking
+      ID right away:</label
+    >
+    <div class="form-group mb-4 mt-4">
+    <input type="email" class="form-control" required [(ngModel)]="email" />
+    </div>
+    <nz-radio-group [(ngModel)]="ticket" class="mb-4">
+      <label nz-radio nzValue="open">Send me only open tickets</label>
+      <label nz-radio nzValue="all">Send me all my tickets</label>
+    </nz-radio-group>
+
+    <button nz-button nzType="primary" class="cstm-btn" (click)="sendTracking()">
+      Send me my tracking ID
+    </button>
+  </div>
+</section>

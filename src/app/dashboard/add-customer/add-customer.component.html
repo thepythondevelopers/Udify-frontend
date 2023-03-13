@@ -1,0 +1,300 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b mb-5">
+    <h3 class="dash-title">
+      {{ id.length ? "Edit Customers" : "Add Customers" }}
+    </h3>
+    <a [routerLink]="['/dashboard/add-product']" class="cstm-btn"
+      *ngIf="modelS.allStores.length">+ Add New Customer</a
+    >
+    <!-- <a href="javascript:void(0);" class="cstm-btn">Add New Customer</a> -->
+  </div>
+  <div class="dash-content-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="dash-card">
+          <div class="dash-head">
+            <h3 class="card-title">
+              {{ id.length ? "Edit Customers" : "Add Customers" }}
+            </h3>
+          </div>
+          <div class="dash-body">
+            <form [formGroup]="customerForm" (ngSubmit)="submitForm()">
+              <div class="row">
+                <div
+                  class="col-lg-6"
+                  *ngIf="!id.length && modelS.allStores.length"
+                >
+                  <div class="form-group">
+                    <label class="form-label">Store</label>
+                    <nz-select
+                      formControlName="store"
+                      nzPlaceHolder="Choose Store"
+                    >
+                      <nz-option
+                        [nzValue]="store?.store_id"
+                        nzLabel="{{ store?.domain }}"
+                        *ngFor="let store of modelS.allStores"
+                      ></nz-option>
+                    </nz-select>
+                    <div
+                      *ngIf="
+                        customerForm.get('store').invalid &&
+                        customerForm.get('store').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('store').errors.required">
+                        Store is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="first_name"
+                    />
+                    <div
+                      *ngIf="
+                        customerForm.get('first_name').invalid &&
+                        customerForm.get('first_name').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('first_name').errors.required">
+                        First Name is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="last_name"
+                    />
+                    <div
+                      *ngIf="
+                        customerForm.get('last_name').invalid &&
+                        customerForm.get('last_name').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('last_name').errors.required">
+                        Last Name is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Email Id</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="email"
+                    />
+                    <div
+                      *ngIf="
+                        customerForm.get('email').invalid &&
+                        customerForm.get('email').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('email').errors.required">
+                        Email is required.
+                      </div>
+                      <div *ngIf="customerForm.get('email').errors.pattern">
+                        Email is invalid.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Country</label>
+                    <!-- <input
+                      type="text"
+                      class="form-control"
+                      formControlName="country"
+                    /> -->
+                    <nz-select
+                      formControlName="country"
+                      nzShowSearch
+                      (ngModelChange)="countrySelected()"
+                    >
+                      <nz-option
+                        [nzValue]="country.name"
+                        [nzLabel]="country?.name"
+                        *ngFor="let country of countries"
+                      ></nz-option>
+                    </nz-select>
+                    <div
+                      *ngIf="
+                        customerForm.get('country').invalid &&
+                        customerForm.get('country').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('country').errors.required">
+                        Country is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <!-- <input
+                      type="tel"
+                      class="form-control"
+                      formControlName="phone"
+                    /> -->
+                    <nz-input-group [nzAddOnBefore]="countryCode">
+                      <input
+                        type="text"
+                        class="form-control"
+                        nz-input
+                        formControlName="phone"
+                      />
+                    </nz-input-group>
+                    <div
+                      *ngIf="
+                        customerForm.get('phone').invalid &&
+                        customerForm.get('phone').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('phone').errors.required">
+                        Phone Number is required.
+                      </div>
+                      <div *ngIf="customerForm.get('phone').errors.minlength">
+                        Phone Number should not be less than 9 digits.
+                      </div>
+                      <div *ngIf="customerForm.get('phone').errors.maxlength">
+                        Phone Number should not be more than 12 digits.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Address line 1</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="address1"
+                    />
+                    <!-- <input
+                      class="form-control"
+                      ngx-google-places-autocomplete
+                      formControlName="address1"
+                      [options]="options"
+                      (onAddressChange)="AddressChange($event)"
+                    /> -->
+                    <!-- {{ formattedaddress }} -->
+                    <div
+                      *ngIf="
+                        customerForm.get('address1').invalid &&
+                        customerForm.get('address1').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('address1').errors.required">
+                        Address line 1 is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">city</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="city"
+                    />
+                    <div
+                      *ngIf="
+                        customerForm.get('city').invalid &&
+                        customerForm.get('city').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('city').errors.required">
+                        City is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Province</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="province"
+                    />
+                    <div
+                      *ngIf="
+                        customerForm.get('province').invalid &&
+                        customerForm.get('province').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('province').errors.required">
+                        Province is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Zip Code</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="zip"
+                    />
+                    <div
+                      *ngIf="
+                        customerForm.get('zip').invalid &&
+                        customerForm.get('zip').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="customerForm.get('zip').errors.required">
+                        Zip Code is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-wrap mt-4">
+                <button type="button" class="custom-btn" (click)="submitForm()">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader [fgsType]="api?.loaderType" [fgsColor]="api?.loaderColor" [pbColor]="api?.loaderColor"  [fgsSize]="'80'"></ngx-ui-loader>

@@ -1,0 +1,210 @@
+<!-- <div class="chat-layout">
+  <div class="chat-head">
+    <h3>{{ ticket?.message }}</h3>
+  </div>
+  <div class="chat-body" #scrollMe>
+    <div *ngFor="let msg of ticket?.reply" [ngClass]="msg.user_id == user.guid ? 'my-message' : 'your-message'">
+      <p>
+        {{ msg?.message }} <span class="chat-time">{{
+          msg?.createdAt | date: "dd/MM/yyyy hh:mm a"
+        }}</span>
+      </p>
+      <br />
+    </div>
+  </div>
+  <div class="chat-foot">
+    <div class="chat-inpt-wrap">
+    <textarea
+          rows="4"
+          nz-input
+          class="form-control"
+          placeholder="Enter your reply"
+          [(ngModel)]="reply"
+        ></textarea>
+        <button
+          type="button"
+          class="chat-btn"
+          (click)="saveReply()"
+          [disabled]="!reply.length"
+        >
+          Reply
+        </button>
+      </div>
+  </div>
+</div> -->
+
+<div class="main__content ticket ud-card ud-admin-card">
+  <div class="row">
+    <div class="col-lg-8">
+  <div class="ticket__body">
+
+    <article class="ticket__body_block shadow-card">
+      <h3>{{ ticket?.subject }}</h3>
+      <div class="block--head">
+        <div class="contact">
+          <div class="d-flex j-c-s-b mb-2">
+            <h4>Contact information:</h4>
+            <time
+          class="timeago"
+          datetime="2022-07-02T08:49:40-05:00"
+          title="2022-07-02 08:49:40"
+          >{{ api.fromNow(ticket?.createdAt) }}</time
+        >
+          </div>
+          <div class="dropdown left out-close">
+            <div class="cnt-field">
+              <label class="info-label">Name:</label>
+              <span>{{ ticket?.name }}</span>
+            </div>
+            <div class="cnt-field">
+              <label class="info-label">Email:</label>
+              <a href="mailto:{{ ticket?.email }}">{{ ticket?.email }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="block--description browser-default mb-4">
+        <p>{{ ticket?.message }}</p>
+      </div>
+      <div
+        class="block--description browser-default"
+        *ngIf="ticket && ticket.file"
+      >
+        <b>File:</b>
+        <a
+          href="{{ api.fileUrl }}uploads/support/{{ getFile(ticket?.file) }}"
+          target="_blank"
+          >{{ getFile(ticket?.file) }}</a
+        >
+      </div>
+    </article>
+  
+    <div *ngIf="ticket && ticket.reply.length">
+      <article
+        class="ticket__body_block shadow-card"
+        *ngFor="let reply of ticket.reply"
+      >
+        <div class="block--head">
+          <div class="contact">
+            <div class="d-flex j-c-s-b mb-2">
+              <h4>
+                Reply by:
+                <b>{{
+                  reply.user_id && reply.user_id._id ? "Udify" : ticket?.name
+                }}</b>
+              </h4>
+              <time
+                class="timeago"
+                datetime="2022-07-02T10:39:37-05:00"
+                title="2022-07-02 10:39:37"
+                >{{ api.fromNow(reply?.createdAt) }}</time
+              >
+            </div>
+          </div>
+        </div>
+        <div class="block--description browser-default">
+          <p>{{ reply?.message }}</p>
+          <div *ngIf="reply.user_id && reply.user_id._id">
+            <br />Sincerely,
+            <br />
+            Udify Staff<br />
+            <a href="http://udify.pamsar.com/"
+              >http://udify.pamsar.com/</a
+            ><br />
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- START REPLY FORM -->
+  
+
+
+
+
+
+    <article class="ticket__body_block shadow-card">
+      <div class="block--message" id="message-block">
+        <div class="form-group">
+        <textarea class="form-control"
+          name="message"
+          id="message"
+          [(ngModel)]="reply"
+          placeholder="Type your message"
+        ></textarea>
+        </div>
+      </div>
+      <section class="form__submit mb-3">
+        <button
+          type="button"
+          class="cstm-btn  btn btn-full"
+          ripple="ripple"
+          [disabled]="!reply.length"
+          (click)="saveReply()"
+        >
+          Submit reply
+          <div class="ripple--container"></div>
+        </button>
+      </section>
+      <div>
+        <nz-select [(ngModel)]="status" (ngModelChange)="changeStatus()">
+          <nz-option nzValue="New" nzLabel="New"></nz-option>
+          <nz-option
+            nzValue="Waiting Reply"
+            nzLabel="Waiting Reply"
+          ></nz-option>
+          <nz-option nzValue="Replied" nzLabel="Replied"></nz-option>
+          <nz-option nzValue="In Progress" nzLabel="In Progress"></nz-option>
+          <nz-option nzValue="On Hold" nzLabel="On Hold"></nz-option>
+          <nz-option nzValue="Needs Review" nzLabel="Needs Review"></nz-option>
+          <nz-option nzValue="Shipped" nzLabel="Shipped"></nz-option>
+          <nz-option nzValue="Resolved" nzLabel="Resolved"></nz-option>
+        </nz-select>
+      </div>
+    </article>
+
+    <!-- END REPLY FORM -->
+  </div>
+  </div>
+  <div class="col-lg-4">
+  <div class="ticket__params">
+    <section class="params--block details accordion visible">
+      <div class="ticket__params shadow-card">
+        <section class="params--block details collapsed-on-xs">
+          <ul class="ticket-detail-list">
+            <li><label>Ticket Details</label> <span class="btn link" (click)="getTicket()">
+              <i nz-icon nzType="sync" nzTheme="outline"></i>
+              <span class="ml-1">Refresh this page</span>
+            </span>
+          </li>
+          <li> <label>Tracking ID:</label> <span>{{ ticket?.id }}</span></li>
+          <li> <label>Ticket status:</label> <span>{{ ticket?.status }}</span></li>
+          <li> <label>Ticket status:</label> <span>{{ ticket?.status }} 
+            <i *ngIf=" ticket.status !== 'Resolved' && ticket.status !== 'resolved' ">
+            [<a class="link" (click)="markAsResolved()"
+                  >Mark as Closed</a
+                >]
+              </i>
+             </span>                  
+         </li>
+         <li> <label>Created on:</label> <span>{{ ticket?.createdAt | date: "dd/MM/yyyy hh:mm a" }}</span></li>
+         <li> <label>Updated:</label> <span>{{ ticket?.updated_at | date: "dd/MM/yyyy hh:mm a" }}</span></li>
+         <li> <label>Last replier:</label> <span>{{ getLastReplier() }}</span></li>
+         <li> <label>Category</label> <span>{{ ticket?.category }}</span></li>
+         <li> <label>Replies:</label> <span>{{ ticket?.reply.length }}</span></li>
+          </ul>
+          
+        </section>
+      </div>
+    </section>
+  </div>
+  </div>
+  </div>
+</div>
+
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

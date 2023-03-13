@@ -1,0 +1,554 @@
+<a
+  href="javascript:void(0);"
+  class="cstm-btn float-right"
+  (click)="edit()"
+  *ngIf="!isAdminUser"
+  >{{ isEdit ? "Cancel" : "Edit" }}</a
+>
+<div class="dash-content-wrap">
+  <section class="dash-hero-banner mb-5 mt-5">
+    <figure class="banner_img">
+      <img
+        src="{{profileForm.get('cover').value}}"
+        onerror="this.onerror=null;this.src='assets/images/cover1.jpg';"
+        alt="banner-img"
+      />
+      <label for="cover_pic" class="cstm-theme-icon" *ngIf="isEdit">
+        <!-- <a href="javascript:void(0);" class="cstm-theme-icon" *ngIf="isEdit"
+          ><i class="far fa-edit"></i
+        ></a> -->
+        <i class="far fa-edit"></i>
+      </label>
+      <input
+        type="file"
+        id="cover_pic"
+        hidden
+        [disabled]="!isEdit"
+        accept="image/png, image/jpg, image/jpeg"
+        (change)="coverChanged($event.target)"
+      />
+    </figure>
+    <div class="hero-bottom-icon">
+      <span class="icon p-r"
+        ><img
+          src="{{
+            profileForm.get('avatar').value}}"
+          onerror="this.onerror=null;this.src='assets/images/user_default.svg';"
+      /></span>
+      <label for="avatar_pic" class="cstm-theme-icon" *ngIf="isEdit">
+        <!-- <a href="javascript:void(0);" class="cstm-theme-icon" *ngIf="isEdit"
+          ><i class="far fa-edit"></i
+        ></a> -->
+        <i class="far fa-edit"></i>
+      </label>
+      <input
+        type="file"
+        id="avatar_pic"
+        hidden
+        [disabled]="!isEdit"
+        accept="image/png, image/jpg, image/jpeg"
+        (change)="avatarChanged($event.target)"
+      />
+    </div>
+  </section>
+
+  <div class="profile-form-wrap">
+    <form class="form-style" [formGroup]="profileForm" (ngSubmit)="save()">
+      <div class="form-body">
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="24">
+            <div class="input_wrap">
+              <label class="form-label">Title</label>
+              <textarea
+                type="text"
+                class="form-control"
+                formControlName="title"
+                placeholder="Title"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('title').invalid &&
+                    profileForm.get('title').touched
+                }"
+              ></textarea>
+              <div
+                *ngIf="
+                  profileForm.get('title').invalid &&
+                  profileForm.get('title').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('title').errors.required">
+                  Title is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="24">
+            <div class="input_wrap">
+              <label class="form-label">About</label>
+              <textarea
+                type="text"
+                class="form-control"
+                formControlName="about"
+                placeholder="About"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('about').invalid &&
+                    profileForm.get('about').touched
+                }"
+              ></textarea>
+              <div
+                *ngIf="
+                  profileForm.get('about').invalid &&
+                  profileForm.get('about').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('about').errors.required">
+                  About is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="first_name"
+                placeholder="First Name"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('first_name').invalid &&
+                    profileForm.get('first_name').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('first_name').invalid &&
+                  profileForm.get('first_name').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('first_name').errors.required">
+                  First name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="last_name"
+                placeholder="Last Name"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('last_name').invalid &&
+                    profileForm.get('last_name').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('last_name').invalid &&
+                  profileForm.get('last_name').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('last_name').errors.required">
+                  Last name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">Email</label>
+              <input
+                type="text" readonly
+                class="form-control"
+                formControlName="email"
+                placeholder="Email"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('email').invalid &&
+                    profileForm.get('email').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('email').invalid &&
+                  profileForm.get('email').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('email').errors.required">
+                  Email is required.
+                </div>
+                <div *ngIf="profileForm.get('email').errors.pattern">
+                  Email is invalid.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">Phonenumber</label>
+              <input
+                type="tel"
+                class="form-control"
+                maxlength="50"
+                formControlName="phone"
+                placeholder="Phonenumber"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('phone').invalid &&
+                    profileForm.get('phone').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('phone').invalid &&
+                  profileForm.get('phone').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('phone').errors.required">
+                  Phone is required.
+                </div>
+                <div *ngIf="profileForm.get('phone').errors.pattern">
+                  Please enter valid phone number.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">Store Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="store_name"
+                placeholder="Store Name"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('store_name').invalid &&
+                    profileForm.get('store_name').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('store_name').invalid &&
+                  profileForm.get('store_name').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('store_name').errors.required">
+                  Store name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">Store Email</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="vendor_email"
+                placeholder="Store Email"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('vendor_email').invalid &&
+                    profileForm.get('vendor_email').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('vendor_email').invalid &&
+                  profileForm.get('vendor_email').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('vendor_email').errors.required">
+                  Store email is required.
+                </div>
+                <div *ngIf="profileForm.get('vendor_email').errors.pattern">
+                  Store email is invalid.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">Company</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="company"
+                placeholder="Company"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('company').invalid &&
+                    profileForm.get('company').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('company').invalid &&
+                  profileForm.get('company').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('company').errors.required">
+                  Company is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">Street</label>
+              <input
+                type="text"
+                class="form-control invalid-input"
+                formControlName="address_street"
+                placeholder="Street"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('address_street').invalid &&
+                    profileForm.get('address_street').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('address_street').invalid &&
+                  profileForm.get('address_street').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('address_street').errors.required">
+                  Street is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">City</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="address_city"
+                placeholder="City"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('address_city').invalid &&
+                    profileForm.get('address_city').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('address_city').invalid &&
+                  profileForm.get('address_city').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('address_city').errors.required">
+                  City is required.
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">State</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="address_state"
+                placeholder="State"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('address_state').invalid &&
+                    profileForm.get('address_state').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('address_state').invalid &&
+                  profileForm.get('address_state').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('address_state').errors.required">
+                  State is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">Zip Code</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="address_zip"
+                placeholder="Zip Code"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('address_zip').invalid &&
+                    profileForm.get('address_zip').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  profileForm.get('address_zip').invalid &&
+                  profileForm.get('address_zip').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="profileForm.get('address_zip').errors.required">
+                  zip code is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <label class="form-label">Country</label>
+              <!-- <input
+                type="text"
+                class="form-control invalid-input" maxlength="50"
+                formControlName="address_country"
+                placeholder="Country"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('address_country').invalid &&
+                    profileForm.get('address_country').touched
+                }"
+              /> -->
+              <nz-select
+                formControlName="address_country"
+                nzShowSearch
+                (ngModelChange)="countrySelected()"
+                [ngClass]="{
+                  'invalid-input':
+                    profileForm.get('address_country').invalid &&
+                    profileForm.get('address_country').touched
+                }"
+              >
+                <nz-option
+                  [nzValue]="country.name"
+                  [nzLabel]="country?.name"
+                  *ngFor="let country of countries"
+                ></nz-option>
+              </nz-select>
+              <div
+                *ngIf="
+                  profileForm.get('address_country').invalid &&
+                  profileForm.get('address_country').touched
+                "
+                class="input-error"
+              >
+                <div
+                  *ngIf="profileForm.get('address_country').errors.required"
+                >
+                  Country is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+            <div nz-col nzSpan="12">
+              <div class="input_wrap">
+                <label class="form-label">Stripe secret key</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="secret_key"
+                  placeholder="secret_key"
+                />
+                <div
+                  *ngIf="
+                    profileForm.get('secret_key').invalid &&
+                    profileForm.get('secret_key').touched
+                  "
+                  class="input-error"
+                >
+                  <div *ngIf="profileForm.get('secret_key').errors.required">
+                    Secret Key is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div nz-col nzSpan="12">
+              <div class="input_wrap">
+                <label class="form-label">Stripe Publishable key</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="publishable_key"
+                  placeholder="Publishable Key"
+                />
+                <div
+                  *ngIf="
+                    profileForm.get('publishable_key').invalid &&
+                    profileForm.get('publishable_key').touched
+                  "
+                  class="input-error"
+                >
+                  <div *ngIf="profileForm.get('publishable_key').errors.required">
+                    publishable Key is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+      <div class="log-form-footer text-left" *ngIf="isEdit">
+        <button type="button" (click)="edit()" class="main-btn dark-btn mr-3">
+          Cancel
+        </button>
+        <button type="button" (click)="save()" class="main-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

@@ -1,0 +1,12 @@
+<div class="dash-content-wrap">
+    <div class="dash-content-head d-f j-c-s-b a-i-c">
+        <h3 class="dash-title">Notifications</h3>
+      <div class="notification_box" *ngFor="let notifications of notf;let i = index">
+        <div class="sno">S No. : {{i+1}}<div>
+        <div class="notification">Notification : {{notifications.body}}</div>
+        <div class="send_by">Send by : {{notifications.send_by}}</div>
+        <div class="email">Email : {{notifications.email}}</div>
+        <div class="date">Date : {{notifications.date}}</div>
+        <button (click)="delete_notf(notifications.notf_id)">Delete</button>
+      </div>
+    </div>

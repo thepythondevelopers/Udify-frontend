@@ -1,0 +1,166 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head mb-5">
+    <h2 class="dash-title">Connect to shopify</h2><span class="hand cstm-btn tooltip1 question_mark1">?<span class="tooltiptext">
+      <ul>How to connect?<br/><br/>
+        <li>Step 1 : Create a custom app in your shopify.</li><br/>
+        <li>Step 2 : Configure admin api scopes and select all the necessary scopes.</li><br/>
+        <li>Step 3 : The data you have to enter below can be get from the API credentials.</li><br/>
+      </ul>
+    </span></span>
+  </div>
+  <div class="dash-content-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="dash-card">
+          <div class="dash-head">
+            <h3 class="card-title">Connect to shopify store</h3><span class="hand cstm-btn tooltip2 question_mark2">?<span class="tooltipimg"><img src="assets/images/connect_shp.png"/></span></span>
+          </div>
+          <form [formGroup]="shopiForm" (ngSubmit)="connect()">
+            <div class="dash-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Store Name</label><span class="hand cstm-btn tooltip3 question_mark3">?<span class="tooltipimg"><img src="assets/images/store_name.png"/></span></span>
+                    <div class="example">
+                      Eg : abc_shop
+                    </div><br/>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="domain"
+                      [ngClass]="{
+                        'invalid-input':
+                          shopiForm.get('domain').invalid &&
+                          shopiForm.get('domain').touched
+                      }"
+                    />
+                    <div
+                      *ngIf="
+                        shopiForm.get('domain').invalid &&
+                        shopiForm.get('domain').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="shopiForm.get('domain').errors.required">
+                        Store name is required.
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Store Api Key</label><span class="hand cstm-btn tooltip4 question_mark4">?<span class="tooltipimg"><img src="assets/images/api_key.png"/></span></span>
+                    <div class="example">
+                      Eg : 1f12f1234567f1ac123a1d1234567b1c
+                    </div><br/>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="store_api_key"
+                      [ngClass]="{
+                        'invalid-input':
+                          shopiForm.get('store_api_key').invalid &&
+                          shopiForm.get('store_api_key').touched
+                      }"
+                    />
+                    <div
+                      *ngIf="
+                        shopiForm.get('store_api_key').invalid &&
+                        shopiForm.get('store_api_key').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="shopiForm.get('store_api_key').errors.required">
+                        Store api key is required.
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Store Api Secret</label><span class="hand cstm-btn tooltip5 question_mark5">?<span class="tooltipimg"><img src="assets/images/secret_key.png"/></span></span>
+                    <div
+                        class="example"
+                      >
+                      Eg : 12bf1f12345a123fc1bcc12345a1234a
+                      </div><br/>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="store_api_secret"
+                      [ngClass]="{
+                        'invalid-input':
+                          shopiForm.get('store_api_secret').invalid &&
+                          shopiForm.get('store_api_secret').touched
+                      }"
+                    />
+                    <div
+                      *ngIf="
+                        shopiForm.get('store_api_secret').invalid &&
+                        shopiForm.get('store_api_secret').touched
+                      "
+                      class="input-error"
+                    >
+                      <div
+                        *ngIf="shopiForm.get('store_api_secret').errors.required"
+                      >
+                        Store api secret is required.
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Access Token</label><span class="hand cstm-btn tooltip6 question_mark6">?<span class="tooltipimg"><img src="assets/images/access_token.png"/></span></span>
+                    <div class="example"
+                      >
+                      Eg : shpat_1f12d123a12345678b1234d123e1e12f
+                      </div>
+                      <br/>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="access_token"
+                      [ngClass]="{
+                        'invalid-input':
+                          shopiForm.get('access_token').invalid &&
+                          shopiForm.get('access_token').touched
+                      }"
+                    />
+                    <div
+                      *ngIf="
+                        shopiForm.get('access_token').invalid &&
+                        shopiForm.get('access_token').touched
+                      "
+                      class="input-error"
+                    >
+                      <div
+                        *ngIf="shopiForm.get('access_token').errors.required"
+                      >
+                        Store access token is required.
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-lg-12">
+                  <div class="btn-wrap mt-4">
+                    <button type="button" class="cstm-btn" (click)="connect()">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader [fgsType]="api?.loaderType" [fgsColor]="api?.loaderColor" [pbColor]="api?.loaderColor"  [fgsSize]="'80'"></ngx-ui-loader>

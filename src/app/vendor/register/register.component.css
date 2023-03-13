@@ -1,0 +1,15 @@
+@import url(../vendor.component.css);
+
+.log-form-card {
+    width: calc(100% - 40%);
+    display: block;
+    flex-wrap: unset;
+}
+
+.input_row {
+    margin-bottom: 4%;
+}
+
+.log-form-card .form-control {
+    padding-left: 0px;
+}

@@ -1,0 +1,5 @@
+@import url(../../vendor/vendor.component.css);
+@import url(../dashboard.component.css);
+.fa-eye{
+    font-weight: 100;
+}

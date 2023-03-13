@@ -1,0 +1,63 @@
+@import url(../catalog-order/catalog-order.component.css);
+
+.button {
+    margin: 0px 30px 0px 60px;
+}
+.center{
+    display: flex;
+    margin: 50px 0px 0px 200px;
+}
+.products_box{
+    width: 1063px!important;
+height: 142px!important;
+}
+.cancel{
+    width: 123px !important;
+height: 25px !important;
+background: #E8A091 !important;
+border-radius: 12px !important;
+border: none!important;
+font-family: 'Inter'!important;
+font-style: normal!important;
+font-weight: 400!important;
+font-size: 15px!important;
+line-height: 18px!important;
+color: #282828!important;
+}
+.status_paid{
+    width: 123px;
+height: 25px;
+background: #A2E891;
+border-radius: 12px ;
+border: none;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+color: #282828;
+}
+.quantity{
+width: 100px;
+height: 19px;
+left: 444px;
+top: 45px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 19px;
+color: #888888;
+}
+.date{
+width: 138px;
+height: 18px;
+left: 731px;
+top: 47px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+color: #888888;
+}

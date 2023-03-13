@@ -1,0 +1,47 @@
+<div class="dash-content-wrap">
+    <div class="dash-content-head d-f j-c-s-b mb-5">
+      <h3 class="dash-title">
+        Order
+      </h3>
+      <!-- <a href="javascript:void(0);" class="cstm-btn">Add New order</a> -->
+    </div>
+    <div class="dash-content-body">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="dash-card">
+            <div class="dash-head">
+              <h4 class="card-title">
+                Order Information
+              </h4>
+            </div>
+            <div class="dash-body">
+                <ul class="listing-row">
+                  <li><label>Order:</label> <p>
+                    {{ order?.name || 'N/A' }}
+                </p></li>
+                  <li><label>Payment Status:</label> <p>
+                    {{ order?.financial_status || 'N/A' }}
+                  </p></li>
+                  <li><label>Payment Gateway:</label> <p>
+                    {{ order?.gateway || 'N/A' }}
+                  </p></li>
+                  <li><label>Subtotal:</label> <p>
+                    {{ order?.subtotal | currency:order.currency }}
+                  </p></li>
+                  <li><label>Tax:</label> <p>
+                    {{ order?.total_tax | currency:order.currency }}
+                  </p></li>
+                  <li><label>Total:</label> <p> 
+                    {{ order?.total | currency:order.currency }}
+                  </p></li>
+                </ul>
+               <div class="btn-wrap mt-4">
+                <a *ngIf="order.order_status_url" href="{{order?.order_status_url}}" target="_blank" class="cstm-btn">View Order Status</a> 
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<ngx-ui-loader [fgsType]="api?.loaderType" [fgsColor]="api?.loaderColor" [pbColor]="api?.loaderColor"  [fgsSize]="'80'"></ngx-ui-loader>
+  

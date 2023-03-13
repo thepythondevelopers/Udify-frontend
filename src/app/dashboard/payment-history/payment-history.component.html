@@ -1,0 +1,86 @@
+<!--<h2>Payment Status</h2>
+<div>
+    <div class="products_box">
+        <div class="options"><img src="assets/images/chat_icon.png" alt="chat_icon"/></div>
+        <div class="options eye"><img src="assets/images/eye-icon.png" alt="eye-icon.png"/></div>
+        <button class="request">Pay now</button>
+        <button class="full">Details</button>
+        <div style="display:flex">
+        <div class="img-box"></div>
+        <div style="padding-left: 20px;">
+        <div class="pd prd_name">Brow Pencil</div>
+        <div class="pd vendor_name">Vendor 1</div>
+        <div class="pd cust_name_text">Supplier Name</div>
+        <div class="pd price">$ 04.05</div>
+        </div>
+        <div>
+        <button class="status">Status Paid</button>
+        <div class="tr">tracking number: 456526564525</div>
+        </div>
+        </div>
+    </div>
+</div>-->
+<div class="dash-content-wrap">
+    <div class="dash-content-head d-f j-c-s-b a-i-c">
+      <h3 class="dash-title">Payment Status </h3>
+    </div>
+  
+    <div class="dash-content-body">
+      <div class="table-card">
+        <nz-table
+          class="table dash-table"
+          #ordersTable
+          [nzData]="orders"
+          [nzShowPagination]="false"
+        >
+          <tbody>
+            <tr *ngFor="let order of ordersTable.data;let i = index;">
+                <div class="products_box" *ngIf="order?.user===user_id">
+                    <div (click)="getVendor(suppliers_id[i])" class="options"><img src="assets/images/chat_icon.png" alt="chat_icon"/></div>
+                    <div [routerLink]="['/dashboard/catalog-orders', order?._id]" class="options eye"><img src="assets/images/eye-icon.png" alt="eye-icon.png"/></div>
+                    <div style="display:flex">
+                    <div class="img-box">
+                      <img class="prd_img" *ngIf="images[i]!==''"
+                            src="{{ images[i] }}"
+                            onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                          />
+                      <img class="prd_img" *ngIf="images[i]===''"
+                          src="assets/images/nophoto.jpg"
+                        />
+                    </div>
+                    <div style="padding-left: 20px;">
+                    <div class="pd prd_name">{{ order?.name }}</div>
+                    <div class="pd vendor_name">{{suppliers[i]}}</div>
+                    <div class="pd createdAt">Date : {{order?.created_at | slice:0:10}}</div>
+                    <div class="pd price">{{ order?.total | currency: order.currency }}</div>
+                    </div>
+                    <div >
+                    <button *ngIf="status[i]==='Paid'" class="status_paid">Status : {{status[i]}}</button>
+                    <button *ngIf="status[i]==='Unpaid'" class="status_unpaid">Status : {{status[i]}}</button>
+                    <div class="tr">tracking number: 456526564525</div>
+                    </div>
+                    </div>
+                    <div class="pn_d">
+                        <!--<button (click)="pay(order.total,suppliers_id[i],publishable_keys[i])" class="request">Pay now</button>-->
+                        <button *ngIf="status[i]==='Unpaid'" (click)="pay_check(20,suppliers_id[i],publishable_keys[i],order.shopify_order_id,order.user)" class="request">Pay now</button>
+                        <button [routerLink]="['/dashboard/catalog-orders', order?._id]" class="full">Details</button>
+                    </div>
+                </div>
+            </tr>
+          </tbody>
+        </nz-table>
+        <nz-pagination
+          [nzPageIndex]="page"
+          [nzTotal]="total"
+          (nzPageIndexChange)="paginate($event)"
+        ></nz-pagination>
+      </div>
+    </div>
+  </div>
+  <ngx-ui-loader
+    [fgsType]="api?.loaderType"
+    [fgsColor]="api?.loaderColor"
+    [pbColor]="api?.loaderColor"
+    [fgsSize]="'80'"
+  ></ngx-ui-loader>
+  

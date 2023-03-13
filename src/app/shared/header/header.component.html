@@ -1,0 +1,64 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"> 
+<nz-header class="main-header home-h">
+  <div class="container">
+    <div class="naigation">
+      <div class="main-logo" [routerLink]="['/']"><img src="assets/images/logo.png" /></div>
+      <ul nz-menu nzTheme="light" class="nav-menus" nzMode="horizontal" [ngClass]="{'active' : isMenu}">
+        <li nz-menu-item [routerLink]="['/']" [nzSelected]="currentPage == '/home' || currentPage == '/'">Home</li>
+        <li nz-menu-item [routerLink]="['/become-partner']" [nzSelected]="currentPage == '/become-partner'">Become a Partner</li>
+        <li nz-menu-item [routerLink]="['/plans']" [nzSelected]="currentPage == '/plans'">Plans & Pricing</li>
+        <li nz-menu-item [routerLink]="['/support']" [nzSelected]="currentPage == '/support'">Support</li>
+      </ul>
+     <span class="btn-wrap">
+      <button
+        nz-button
+        nzType="primary"
+        class="cstm-btn-outln"
+        [nzSize]="'default'"
+        nzShape="round"
+        [routerLink]="['/signin']"
+        *ngIf="!isAuth"
+      >
+      <img
+                src="assets/images/login-icon.png"
+                class="mr-2"
+                alt="login-icon"
+              />
+        Login
+        
+        <!--<mat-icon class="material-icons-outlined ml-2" >account_circle</mat-icon>-->
+      </button>
+      <!--<img class="cstm-btn"
+      [routerLink]="['/signin']"
+      *ngIf="!isAuth" src="assets/images/login-button.png"/>-->
+      <button
+      nz-button
+      nzType="primary"
+      class="cstm-btn-outln"
+      [nzSize]="'default'"
+      nzShape="round"
+      (click)="goToDashboard()"
+      *ngIf="isAuth"
+      >     
+      <!-- [routerLink]="[isAdmin ? '/admin' : '/dashboard']" -->
+      <mat-icon class="material-icons-outlined" >account_circle</mat-icon>
+    </button>
+      <button
+      nz-button
+      nzType="primary"
+      class="cstm-btn side-menu-btn ml-3"
+      [nzSize]="'default'"
+      nzShape="round"
+      (click)="isMenu = !isMenu"
+      >     
+      <!-- [routerLink]="[isAdmin ? '/admin' : '/dashboard']" -->
+      <mat-icon class="material-icons-outlined" >menu</mat-icon>
+    </button>
+
+     
+  </span>
+    </div>
+  </div>
+</nz-header>

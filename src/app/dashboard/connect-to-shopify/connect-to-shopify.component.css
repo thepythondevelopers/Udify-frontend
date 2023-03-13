@@ -1,0 +1,197 @@
+@import url(../dashboard.component.css);
+.example{
+    font-size: 15px;
+    color: #20c997;
+}
+.question_mark1{
+    top: -20px;
+    left: 237px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #20c997;
+    padding: 2px 5px 5px 5px;
+    color: white;
+}
+.question_mark2{
+    top: -21px;
+    left: 253px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #20c997;
+    padding: 2px 5px 5px 5px;
+    color: white;
+}
+.question_mark3{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #20c997;
+    padding: 2px 5px 5px 5px;
+    color: white;
+    margin-left: -65px;
+}
+.question_mark4{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #20c997;
+    padding: 2px 5px 5px 5px;
+    color: white;
+    margin-left: -55px;
+}
+.question_mark5{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #20c997;
+    padding: 2px 5px 5px 5px;
+    color: white;
+    margin-left: -35px;
+}
+.question_mark6{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #20c997;
+    padding: 2px 5px 5px 5px;
+    color: white;
+    margin-left: -55px;
+}
+/* Tooltip container */
+.tooltip1 {
+    position: relative;
+    display: inline-block;
+  }
+  .tooltip2 {
+    position: relative;
+    display: inline-block;
+  }
+  .tooltip3 {
+    position: relative;
+    display: inline-block;
+  }
+  .tooltip4 {
+    position: relative;
+    display: inline-block;
+  }
+  .tooltip5 {
+    position: relative;
+    display: inline-block;
+  }
+  .tooltip6 {
+    position: relative;
+    display: inline-block;
+  }
+  ul{
+    font-size: 10px;
+  }
+  /* Tooltip text */
+  .tooltip1 .tooltiptext {
+    visibility: hidden;
+    width: 320px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    padding: 5px 5px;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  .tooltip2 .tooltipimg {
+    visibility: hidden;
+    width: 200px;
+    height: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    padding: 5px 5px;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  .hand:hover{
+    cursor: pointer;
+    cursor: hand;
+  }
+  .tooltip3 .tooltipimg {
+    visibility: hidden;
+    width: 180px;
+    height: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    padding: 5px 5px;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  .tooltip4 .tooltipimg {
+    visibility: hidden;
+    width: 200px;
+    height: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    padding: 5px 5px;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  .tooltip5 .tooltipimg {
+    visibility: hidden;
+    width: 200px;
+    height: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    padding: 5px 5px;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  .tooltip6 .tooltipimg {
+    visibility: hidden;
+    width: 200px;
+    height: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    padding: 5px 5px;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip1:hover .tooltiptext {
+    visibility: visible;
+  }
+  .tooltip2:hover .tooltipimg{
+    visibility: visible;
+  }
+  .tooltip3:hover .tooltipimg{
+    visibility: visible;
+  }
+  .tooltip4:hover .tooltipimg{
+    visibility: visible;
+  }
+  .tooltip5:hover .tooltipimg{
+    visibility: visible;
+  }
+  .tooltip6:hover .tooltipimg{
+    visibility: visible;
+  }

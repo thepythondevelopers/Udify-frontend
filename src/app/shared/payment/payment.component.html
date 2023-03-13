@@ -1,0 +1,29 @@
+<!-- <form (ngSubmit)="createStripeToken()" class="checkout">
+  <label for="card-info">Card Info</label>
+  <div id="form-field">
+    <div id="card-info" #cardInfo></div>
+    <div id="card-errors" role="alert">{{ cardError }}</div>
+    <button nz-button nzType="primary" id="submit-button" type="submit" (click)="createStripeToken()">
+      Checkout
+    </button>
+  </div>
+</form> -->
+
+<!-- <div class="card-js" id="my-card" data-capture-name="true"></div> -->
+<div class="card-js" id="my-card">
+  <input class="card-number my-custom-class" name="card-number">
+  <input class="name" id="the-card-name-id" name="card-holders-name" placeholder="Name on card">
+  <input class="expiry-month" name="expiry-month">
+  <input class="expiry-year" name="expiry-year">
+  <input class="cvc" name="cvc" type="password">
+</div>
+<br>
+<button nz-button nzType="primary" id="submit-button" type="submit" (click)="checkout()">
+  Checkout
+</button>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

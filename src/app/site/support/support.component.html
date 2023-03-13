@@ -1,0 +1,143 @@
+<div class="area">
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+
+<!----------------------------support------------------------>
+<section class="support">
+  <div class="container">
+    <div
+      class="row d-flex justify-content-center align-items-center text-center pt-5 pb-5"
+    >
+      <div
+        class="col-md-12 col-sm-12 animate__fadeInLeft animate__animated pt-5 pb-5"
+        data-animation="fadeILeft"
+      >
+        <ul class="list-unstyled d-flex justify-content-center banner-links">
+          <li class="nav-item active">
+            <a class="nav-link" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link">.</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/plans']">Pricing & Plans </a>
+          </li>
+        </ul>
+        <h2>{{cmsService.support.section1.heading1}}</h2>
+        <p>{{cmsService.support.section1.heading2}}
+        </p>
+        <form action="" method="get" class="search-bar" traget="_blank">
+          <input type="text" placeholder="search any thing" name="q" />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--  -->
+<section class="ticket-info-sec">
+  <div class="container">
+    <ul class="ticket-check-list">
+      <li>
+        <a
+          (click)="addSupportTicket()"
+          class="ticket-check-btn"
+          ><span class="ticket--btn-icon"
+            ><i nz-icon nzType="file-add" nzTheme="outline"></i
+          ></span>
+          <h4>Submit a ticket</h4>
+          <p>Submit a new issue to a department</p>
+        </a>
+      </li>
+      <li>
+        <a (click)="viewSupportTicket()" class="ticket-check-btn"
+          ><span class="ticket--btn-icon"
+            ><i nz-icon nzType="file-text" nzTheme="outline"></i
+          ></span>
+          <h4>View existing tickets</h4>
+          <p>View tickets you submitted in the past</p>
+        </a>
+      </li>
+    </ul>
+    <div class="ticket-list-block mt-5">
+      <div class="sec-heading mb-5 text-center"><h2>Knowledgebase</h2></div>
+      <ul class="ticket-listing">
+        <li *ngFor="let know of knowledge;" [routerLink]="['/knowledgebase', know?._id]">
+          <a class="ticket-list-box">
+            <span class="ticket--btn-icon"
+              ><i nz-icon nzType="container" nzTheme="outline"></i
+            ></span>
+            <h4>{{know?.title}}</h4>
+            <span class="ticket-cat"
+              ><strong>Category:</strong> {{know?.category}}</span
+            >
+            <p [innerHtml]="know?.description"></p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!--  -->
+
+<!----------------------------support ------------------------>
+
+<!-- <section class="ticket-sec" *ngIf="auth.getAuthStatus()">
+  <div class="container">
+
+      <div class="d-f j-c-s-b a-i-c mb-5">
+        <h3 class="ticket-heading">Ticket Listing</h3>
+        <button type="button" class="cstm-btn" (click)="addSupportTicket()">
+          Create Ticket
+        </button>
+      </div>
+        
+
+        <div *ngIf="tickets.length">
+          <div class="row">
+            <div
+              class="col-md-12 col-sm-12 col-lg-4"
+              *ngFor="let ticket of tickets; let i = index;"
+              [routerLink]="['/support/ticket/', ticket.id ]"
+            >
+              <div class="ticket_cards">
+                <h3>{{ticket?.message}}</h3>
+                  <p>{{ticket?.created_at | date: 'dd/MM/yyyy hh:mm a' }}</p>                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!tickets.length">
+          <p>No ticket Found</p>
+        </div>
+  </div>
+</section> -->
+
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

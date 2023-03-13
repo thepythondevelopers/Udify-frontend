@@ -1,0 +1,161 @@
+<div class="dash-content-wrap catalog-p">
+  <div class="dash-content-head d-f j-c-s-b a-i-c">
+    <h3 class="dash-title">Product Catalog</h3>
+  </div>
+
+  <div class="dash-content-body">
+    <div class="dash-filter-bar d-f j-c-s-b a-i-c">
+      <ul class="filter-bar-list d-f j-c-s-b">
+        <li>
+          <a href="javascript:void(0);" class="icon-btn"
+            ><i class="fal fa-filter"></i
+          ></a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="icon-btn"
+            ><i class="fas fa-sliders-v"></i
+          ></a>
+        </li>
+      </ul>
+      <ul class="filter-bar-list d-f j-c-s-b a-i-c">
+        <li>
+          <nz-select ngModel="Product-1">
+            <nz-option nzValue="option-1" nzLabel="option-1"></nz-option>
+            <nz-option nzValue="Product-1" nzLabel="Product-1"></nz-option>
+            <nz-option nzValue="option-3" nzLabel="option-3"></nz-option>
+          </nz-select>
+        </li>
+        <li>
+          <nz-select ngModel="Product-1">
+            <nz-option nzValue="option-1" nzLabel="option-1"></nz-option>
+            <nz-option nzValue="Product-1" nzLabel="Product-1"></nz-option>
+            <nz-option nzValue="option-3" nzLabel="option-3"></nz-option>
+          </nz-select>
+        </li>
+        <li>
+          <nz-select ngModel="Product-1">
+            <nz-option nzValue="option-1" nzLabel="option-1"></nz-option>
+            <nz-option nzValue="Product-1" nzLabel="Product-1"></nz-option>
+            <nz-option nzValue="option-3" nzLabel="option-3"></nz-option>
+          </nz-select>
+        </li>
+        <li>
+          <nz-select ngModel="Product-1">
+            <nz-option nzValue="option-1" nzLabel="option-1"></nz-option>
+            <nz-option nzValue="Product-1" nzLabel="Product-1"></nz-option>
+            <nz-option nzValue="option-3" nzLabel="option-3"></nz-option>
+          </nz-select>
+        </li>
+        <li>
+          <nz-select ngModel="Product-1">
+            <nz-option nzValue="option-1" nzLabel="option-1"></nz-option>
+            <nz-option nzValue="Product-1" nzLabel="Product-1"></nz-option>
+            <nz-option nzValue="option-3" nzLabel="option-3"></nz-option>
+          </nz-select>
+        </li>
+      </ul>
+    </div>
+    <div class="products-block">
+      <div class="row">
+        <div
+          class="col-lg-3 col-md-4"
+          *ngFor="let prod of products; let i = index"
+        >
+          <div class="product-card">
+            <figure class="product-img">
+              <img
+                src="{{ prod.images[0] }}"
+                onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                alt=""
+                *ngIf="prod.images"
+              />
+            </figure>
+            <div class="product-des">
+              <h3>{{ prod?.title }}</h3>
+              <div class="price-bar d-f j-c-s-b a-i-c">
+                <h4>
+                  <!-- Price: {{ prod?.price || "N/A" }} -->
+                </h4>
+                <a
+                  href="javascript:void(0);"
+                  (click)="addProduct(prod)"
+                  class="normal-icon" *ngIf="modelS.allStores.length"
+                  ><i class="far fa-plus-circle"></i
+                ></a>
+              </div>
+              <div class="pd-bottom-bar">
+                <label>Listed By:</label>
+                <div
+                  class="cursor-pointer"
+                  [routerLink]="['/dashboard/vendor/view/', prod?.user_id?._id]"
+                >
+                  <h3 class="d-f j-c-s-b a-i-c hover_primary">
+                    <span>
+                      {{ prod?.user_id?.first_name }}
+                      {{ prod?.user_id?.last_name }}
+                    </span>
+                    <a class="icon"><i class="fas fa-eye"></i></a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>
+
+<nz-modal
+  [(nzVisible)]="isStoreVisible"
+  nzClassName="custom_nzmodal"
+  nzTitle="select specific store or all stores to import product into."
+  nzOkText="Add Product"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="checkUserAgreement()"
+>
+  <ng-container *nzModalContent>
+    <label>Select Store</label>
+    <nz-select
+      [(ngModel)]="selectedStore"
+      *ngIf="shopiFyStores.length"
+      nzPlaceHolder="Choose Store"
+      (ngModelChange)="storeChange()"
+    >
+      <!-- <nz-option [nzValue]="'all'" nzLabel="All"></nz-option> -->
+      <nz-option
+        [nzValue]="store?.store_id"
+        nzLabel="{{ store?.domain }}"
+        *ngFor="let store of shopiFyStores"
+      ></nz-option>
+    </nz-select>
+  </ng-container>
+</nz-modal>
+
+<nz-modal
+  [(nzVisible)]="isAgreementVisible"
+  nzClassName="custom_nzmodal agreement_modal"
+  [nzTitle]=""
+  (nzOnCancel)="cancelAgreement()"
+  [nzFooter]="null"
+>
+<ng-container *nzModalContent>
+    <span class="agreement_title"><span nz-icon nzType="info-circle" nzTheme="outline" class="agreement_title_icon"></span>User Agreement</span>
+    <div class="agreement_container custom-scroll">
+      <div [innerHtml]="modelS?.userAgreementContent"></div>
+    </div>
+    <div class="agreement_footer">
+      <div>
+        <label class="agreement_checkbox" nz-checkbox [(ngModel)]="agreementAccept">I have read all conditions carefully.</label>
+      </div>
+      
+      <button nz-button class="agreement_save_btn" (click)="checkProductToStore()" [disabled]="!agreementAccept">Accept and Continue</button>
+    </div>
+  </ng-container>
+</nz-modal>

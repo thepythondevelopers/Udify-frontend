@@ -1,0 +1,532 @@
+<div class="log-form-layout vendor-reg-form">
+  <span class="form-top-shape"
+    ><img src="assets/images/form-top-shape.png"
+  /></span>
+  <span class="form-bottom-shape"
+    ><img src="assets/images/form-bottom-shape.png"
+  /></span>
+  <div class="log-form-card">
+    <form class="" [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
+      <div class="log-form-head">
+        <a [routerLink]="['/']" class="form-logo">
+          <img src="assets/images/logo.png" />
+        </a>
+        <h3 class="log-title">Let's Get Started</h3>
+        <p>Sign up for free. No credit card required.</p>
+      </div>
+      <div class="log-form-body">
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control invalid-input" maxlength="50"
+                formControlName="first_name"
+                placeholder="First Name"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('first_name').invalid &&
+                    registerForm.get('first_name').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('first_name').invalid &&
+                  registerForm.get('first_name').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('first_name').errors.required">
+                  First name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="last_name"
+                placeholder="Last Name"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('last_name').invalid &&
+                    registerForm.get('last_name').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('last_name').invalid &&
+                  registerForm.get('last_name').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('last_name').errors.required">
+                  Last name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Email</label>
+              <input
+                type="text" autocomplete="off" 
+                class="form-control" maxlength="50"
+                formControlName="email"
+                placeholder="Email"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('email').invalid &&
+                    registerForm.get('email').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('email').invalid &&
+                  registerForm.get('email').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('email').errors.required">
+                  Email is required.
+                </div>
+                <div *ngIf="registerForm.get('email').errors.pattern">
+                  Email is invalid.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control" maxlength="50"
+                formControlName="password"
+                placeholder="Password"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('password').invalid &&
+                    registerForm.get('password').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('password').invalid &&
+                  registerForm.get('password').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('password').errors.required">
+                  Password is required.
+                </div>
+                <div *ngIf="registerForm.get('password').errors.minlength">
+                  Password must be 6 characters long.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Phonenumber</label>
+              <input
+                type="tel"
+                class="form-control" maxlength="50"
+                formControlName="phone"
+                placeholder="Phonenumber"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('phone').invalid &&
+                    registerForm.get('phone').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('phone').invalid &&
+                  registerForm.get('phone').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('phone').errors.required">
+                  Phone is required.
+                </div>
+                <div *ngIf="registerForm.get('phone').errors.pattern">
+                  Please enter valid phone number.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">About</label>
+              <input
+                type="text"
+                class="form-control" maxlength="200"
+                formControlName="about"
+                placeholder="About"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('about').invalid &&
+                    registerForm.get('about').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('about').invalid &&
+                  registerForm.get('about').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('about').errors.required">
+                  About is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Store Name</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="store_name"
+                placeholder="Store Name"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('store_name').invalid &&
+                    registerForm.get('store_name').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('store_name').invalid &&
+                  registerForm.get('store_name').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('store_name').errors.required">
+                  Store name is required.
+                </div>
+              </div>
+            </div>
+          </div>-->
+        </div>
+
+        <!-- <div nz-row class="input_row">
+          <div nz-col nzSpan="12">
+            <div class="input_wrap">
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="user_name"
+                placeholder="Username"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('user_name').invalid &&
+                    registerForm.get('user_name').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('user_name').invalid &&
+                  registerForm.get('user_name').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('user_name').errors.required">
+                  Username is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div nz-row class="input_row">
+          <!--<div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Store Email</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="store_email"
+                placeholder="Store Email"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('store_email').invalid &&
+                    registerForm.get('store_email').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('store_email').invalid &&
+                  registerForm.get('store_email').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('store_email').errors.required">
+                  Store email is required.
+                </div>
+                <div *ngIf="registerForm.get('store_email').errors.pattern">
+                  Store email is invalid.
+                </div>
+              </div>
+            </div>
+          </div>-->
+
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Address Street</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="address_street"
+                placeholder="Address Street"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('address_street').invalid &&
+                    registerForm.get('address_street').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('address_street').invalid &&
+                  registerForm.get('address_street').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('address_street').errors.required">
+                  Address street is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">City</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="address_city"
+                placeholder="City"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('address_city').invalid &&
+                    registerForm.get('address_city').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('address_city').invalid &&
+                  registerForm.get('address_city').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('address_city').errors.required">
+                  City is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Address Unit</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="address_unit"
+                placeholder="Address Unit"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('address_unit').invalid &&
+                    registerForm.get('address_unit').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('address_unit').invalid &&
+                  registerForm.get('address_unit').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('address_unit').errors.required">
+                  Address unit is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row class="input_row">
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">State</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="address_state"
+                placeholder="State"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('address_state').invalid &&
+                    registerForm.get('address_state').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('address_state').invalid &&
+                  registerForm.get('address_state').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('address_state').errors.required">
+                  State is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Zip Code</label>
+              <input
+                type="text"
+                class="form-control" maxlength="50"
+                formControlName="address_zip"
+                placeholder="Zip Code"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('address_zip').invalid &&
+                    registerForm.get('address_zip').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('address_zip').invalid &&
+                  registerForm.get('address_zip').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('address_zip').errors.required">
+                  zip code is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div nz-col nzSpan="8">
+            <div class="input_wrap">
+              <label class="form-label">Country</label>
+              <!-- <input
+                type="text"
+                class="form-control invalid-input" maxlength="50"
+                formControlName="address_country"
+                placeholder="Country"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('address_country').invalid &&
+                    registerForm.get('address_country').touched
+                }"
+              /> -->
+              <nz-select
+                formControlName="address_country"
+                nzShowSearch
+                (ngModelChange)="countrySelected()"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('address_country').invalid &&
+                    registerForm.get('address_country').touched
+                }"
+              >
+                <nz-option
+                  [nzValue]="country.name"
+                  [nzLabel]="country?.name"
+                  *ngFor="let country of countries"
+                ></nz-option>
+              </nz-select>
+              <div
+                *ngIf="
+                  registerForm.get('address_country').invalid &&
+                  registerForm.get('address_country').touched
+                "
+                class="input-error"
+              >
+                <div
+                  *ngIf="registerForm.get('address_country').errors.required"
+                >
+                  Country is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <div nz-row class="input_row">
+          <div nz-col nzSpan="24">
+            <div class="input_wrap">
+              <label class="form-label">About</label>
+              <textarea
+                type="text"
+                class="form-control" maxlength="350"
+                formControlName="about"
+                placeholder="About"
+                [ngClass]="{
+                  'invalid-input':
+                    registerForm.get('about').invalid &&
+                    registerForm.get('about').touched
+                }"
+              ></textarea>
+              <div
+                *ngIf="
+                  registerForm.get('about').invalid &&
+                  registerForm.get('about').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="registerForm.get('about').errors.required">
+                  About is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="log-form-footer text-center">
+        <button type="button" (click)="register()" class="main-btn">
+          Sign Up
+        </button>
+        <div class="d-f j-c-c mt-3 bottom_fields">
+          <a [routerLink]="['/vendor/forgot-password']" class="primary-link"
+            >Forgot Password</a
+          >
+        </div>
+        <p>
+          I have an account.<a
+            [routerLink]="['/vendor/login']"
+            class="primary-link"
+            >SignIn</a
+          >
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

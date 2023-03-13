@@ -1,0 +1,391 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b mb-5">
+    <div class="d-f a-i-c">
+      <h3 class="dash-title">{{ isEdit ? "Edit Profile" : "Profile" }}</h3>
+      <nz-tag
+        [nzColor]="'green'"
+        *ngIf="user && user.plan_status && !isAdminUser"
+        class="ml-3"
+        >Current Plan: {{ user?.plan_status }}</nz-tag
+      >
+    </div>
+
+    <a
+      href="javascript:void(0);"
+      class="cstm-btn"
+      (click)="edit()"
+      *ngIf="!isAdminUser"
+      >{{ isEdit ? "Cancel" : "Edit" }}</a
+    >
+  </div>
+  <div class="dash-content-body">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="dash-card">
+          <form [formGroup]="firstForm" (ngSubmit)="updateFirstForm()">
+            <div class="dash-head">
+              <div class="profile_info">
+                <label for="pro_pic">
+                  <span class="profile_pic">
+                    <!-- <img
+                      [src]="
+                        user?.account_id?.avatar
+                          ? 'data:image/jpeg;base64,'+user.account_id.avatar
+                          : 'assets/images/user_default.svg'
+                      "
+                      onerror="this.src='assets/images/user_default.svg'"
+                    /> -->
+                    <img
+                      src="{{
+                        bindImage(firstForm.get('avatar').value) ||
+                          'assets/images/user_default.svg'
+                      }}"
+                      onerror="this.onerror=null;this.src='assets/images/user_default.svg';"
+                    />
+                    <span class="edit_icon edit-pro" *ngIf="isEdit">
+                      <i class="fas fa-edit"></i>
+                    </span>
+                  </span>
+                </label>
+                <input
+                  type="file"
+                  id="pro_pic"
+                  hidden
+                  [disabled]="!isEdit"
+                  accept="image/png, image/jpg, image/jpeg"
+                  (change)="profilePicChanged($event.target)"
+                />
+                <div class="profile_cnt">
+                  <h4>{{ user?.first_name }} {{ user?.last_name }}</h4>
+                  <p>Business</p>
+                </div>
+              </div>
+            </div>
+            <div class="dash-body">
+              <div class="form-group">
+                <label class="form-label">About</label>
+                <textarea
+                  class="form-control"
+                  [readonly]="!isEdit"
+                  formControlName="about"
+                  style="height: 70px; resize: none"
+                ></textarea>
+
+                <div
+                  *ngIf="
+                    firstForm.get('about').invalid &&
+                    firstForm.get('about').touched
+                  "
+                  class="input-error"
+                >
+                  <div *ngIf="firstForm.get('about').errors.required">
+                    About is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input
+                  type="text"
+                  formControlName="email"
+                  readonly
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Location</label>
+                <input
+                  type="text"
+                  [readonly]="!isEdit"
+                  formControlName="location"
+                  class="form-control"
+                />
+
+                <div
+                  *ngIf="
+                    firstForm.get('location').invalid &&
+                    firstForm.get('location').touched
+                  "
+                  class="input-error"
+                >
+                  <div *ngIf="firstForm.get('location').errors.required">
+                    Location is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Website</label>
+                <input
+                  type="text"
+                  [readonly]="!isEdit"
+                  formControlName="website"
+                  class="form-control"
+                />
+
+                <div
+                  *ngIf="
+                    firstForm.get('website').invalid &&
+                    firstForm.get('website').touched
+                  "
+                  class="input-error"
+                >
+                  <div *ngIf="firstForm.get('website').errors.required">
+                    Website is required.
+                  </div>
+                </div>
+              </div>
+              <div class="btn-wrap mt-4 text-center" *ngIf="isEdit">
+                <button
+                  type="button"
+                  class="cstm-btn-blk"
+                  (click)="updateFirstForm()"
+                >
+                  Update
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="dash-card">
+          <div class="dash-head">
+            <h3 class="card-title">Edit Profile</h3>
+          </div>
+          <form [formGroup]="secondForm" (ngSubmit)="updateSecondForm()">
+            <div class="dash-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    <input
+                      type="text"
+                      [readonly]="!isEdit"
+                      class="form-control"
+                      formControlName="first_name"
+                    />
+                    <div
+                      *ngIf="
+                        secondForm.get('first_name').invalid &&
+                        secondForm.get('first_name').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="secondForm.get('first_name').errors.required">
+                        First name is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    <input
+                      type="text"
+                      [readonly]="!isEdit"
+                      class="form-control"
+                      formControlName="last_name"
+                    />
+                    <div
+                      *ngIf="
+                        secondForm.get('last_name').invalid &&
+                        secondForm.get('last_name').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="secondForm.get('last_name').errors.required">
+                        Last name is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Company </label>
+                    <input
+                      type="text"
+                      [readonly]="!isEdit"
+                      class="form-control"
+                      formControlName="company"
+                    />
+                    <div
+                      *ngIf="
+                        secondForm.get('company').invalid &&
+                        secondForm.get('company').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="secondForm.get('company').errors.required">
+                        Company is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input
+                      type="text"
+                      [readonly]="!isEdit"
+                      class="form-control"
+                      formControlName="name"
+                    />
+                    <div
+                      *ngIf="
+                        secondForm.get('name').invalid &&
+                        secondForm.get('name').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="secondForm.get('name').errors.required">
+                        Username is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Street</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      [readonly]="!isEdit"
+                      formControlName="address_street"
+                    />
+                    <div
+                      *ngIf="
+                        secondForm.get('address_street').invalid &&
+                        secondForm.get('address_street').touched
+                      "
+                      class="input-error"
+                    >
+                      <div
+                        *ngIf="secondForm.get('address_street').errors.required"
+                      >
+                        Street is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">City</label>
+                    <input
+                      type="text"
+                      [readonly]="!isEdit"
+                      class="form-control"
+                      formControlName="address_city"
+                    />
+                    <div
+                      *ngIf="
+                        secondForm.get('address_city').invalid &&
+                        secondForm.get('address_city').touched
+                      "
+                      class="input-error"
+                    >
+                      <div
+                        *ngIf="secondForm.get('address_city').errors.required"
+                      >
+                        City is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">State</label>
+                    <input
+                      type="text"
+                      [readonly]="!isEdit"
+                      class="form-control"
+                      formControlName="address_state"
+                    />
+                    <div
+                      *ngIf="
+                        secondForm.get('address_state').invalid &&
+                        secondForm.get('address_state').touched
+                      "
+                      class="input-error"
+                    >
+                      <div
+                        *ngIf="secondForm.get('address_state').errors.required"
+                      >
+                        State is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Zip Code</label>
+                    <input
+                      type="text"
+                      [readonly]="!isEdit"
+                      class="form-control"
+                      formControlName="address_zip"
+                    />
+                    <div
+                      *ngIf="
+                        secondForm.get('address_zip').invalid &&
+                        secondForm.get('address_zip').touched
+                      "
+                      class="input-error"
+                    >
+                      <div
+                        *ngIf="secondForm.get('address_zip').errors.required"
+                      >
+                        Zip code is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Country</label>
+                    <input
+                      type="text"
+                      [readonly]="!isEdit"
+                      class="form-control"
+                      formControlName="address_country"
+                    />
+                    <div
+                      *ngIf="
+                        secondForm.get('address_country').invalid &&
+                        secondForm.get('address_country').touched
+                      "
+                      class="input-error"
+                    >
+                      <div
+                        *ngIf="
+                          secondForm.get('address_country').errors.required
+                        "
+                      >
+                        Country is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-wrap mt-4" *ngIf="isEdit">
+                <button
+                  type="button"
+                  class="cstm-btn-blk"
+                  (click)="updateSecondForm()"
+                >
+                  Update Profile
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

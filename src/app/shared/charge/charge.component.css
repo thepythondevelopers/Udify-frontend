@@ -1,0 +1,31 @@
+.int_pay{
+    cursor:pointer;
+}
+.address{
+    padding-left: 38px;
+    width: 100%;
+}
+.postal_code{
+    padding-left: 38px;
+    width: 100%;
+    margin-right: 10px;
+}
+.city{
+    padding-left: 38px;
+    width: 100%;
+}
+.state{
+    padding-left: 38px;
+    width: 100%;
+    margin-right: 10px;
+}
+.country{
+    padding-left: 38px;
+    width: 100%;
+}
+.int_pay_form{
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 22px;
+}

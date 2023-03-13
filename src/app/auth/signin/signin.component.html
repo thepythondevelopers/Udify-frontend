@@ -1,0 +1,156 @@
+<div class="log-form-layout">
+  <span class="form-top-shape"
+    ><img src="assets/images/form-top-shape.png"
+  /></span>
+  <span class="form-bottom-shape"
+    ><img src="assets/images/form-bottom-shape.png"
+  /></span>
+  <div class="log-form-card">
+    <div class="log-form-left">
+      <div class="ellipse14"></div>
+      <div class="ellipse15"></div>
+      <div class="ellipse16"></div>
+      <div class="ellipse27"></div>
+      <span class="form-left-top-shape"
+        ><img src="assets/images/black-dot.png"
+      /></span>
+      <img class="log-ill-img" src="assets/images/login-img.png" />
+      <div class="log-inn-text">
+        <h3>
+          Welcome to our <br />
+          website
+        </h3>
+      </div>
+      <span class="form-left-bottom-shape"
+        ><img src="assets/images/black-dot.png"
+      /></span>
+    </div>
+    <form class="log-form-right" [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="drop_down">
+        <span (click)="angle_up()" *ngIf="!au" id="angle-down" class="fas fa-angle-down"></span><span *ngIf="au" (click)="angle_down()" id="angle-down" class="fas fa-angle-up"></span>
+        <div [routerLink]="['/signin']" class="icon-button" *ngIf="au" class="customer">C</div>
+        <div [routerLink]="['/vendor/login']" *ngIf="au" class="vendor">V</div>
+      </div>
+      <div class="log-form-head">
+        <a [routerLink]="['/']" class="form-logo">
+          <img src="assets/images/logo.png" />
+        </a>
+        <h3 class="log-title">LOGIN INTO UDIFY</h3>
+        <p>Sign In for free. No credit card required.</p>
+      </div>
+      <div class="log-form-body adsa">
+        <div class="form-group">
+          <label class="form-label">Your Email</label>
+          <div class="input_wrap">
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Enter Your Email Id"
+              [ngClass]="{
+                'invalid-input':
+                  loginForm.get('email').invalid &&
+                  loginForm.get('email').touched
+              }"
+            />
+            <span class="input-icon"
+              ><mat-icon aria-label="material-icons-outlined"
+                >email</mat-icon
+              ></span
+            >
+          </div>
+          <div
+            *ngIf="
+              loginForm.get('email').invalid && loginForm.get('email').touched
+            "
+            class="input-error"
+          >
+            <div *ngIf="loginForm.get('email').errors.required">
+              Email is required.
+            </div>
+            <div *ngIf="loginForm.get('email').errors.pattern">
+              Email is invalid.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="input_wrap">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Enter Your Password"
+              [ngClass]="{
+                'invalid-input':
+                  loginForm.get('password').invalid &&
+                  loginForm.get('password').touched
+              }"
+            />
+            <span class="input-icon"
+              ><mat-icon aria-label="material-icons-outlined"
+                >lock</mat-icon
+              ></span
+            >
+          </div>
+          <div
+            *ngIf="
+              loginForm.get('password').invalid &&
+              loginForm.get('password').touched
+            "
+            class="input-error"
+          >
+            <div *ngIf="loginForm.get('password').errors.required">
+              Password is required.
+            </div>
+            <div *ngIf="loginForm.get('password').errors.minlength">
+              Password must be 6 characters long.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="log-form-footer text-center">
+        <button type="button" (click)="login()" class="main-btn">Login</button>
+        <div class="d-f j-c-s-b mt-3 bottom_fields">
+          <div class="custom-control custom-checkbox" *ngIf="!adminLogin">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customCheckBox1"
+              [(ngModel)]="rememberMe"
+              [ngModelOptions]="{ standalone: true }"
+            />
+            <label class="custom-control-label" for="customCheckBox1"
+              >Remember me</label
+            >
+          </div>
+          <a
+            [routerLink]="[
+              adminLogin ? '/admin/forgot-password' : '/forgot-password'
+            ]"
+            class="primary-link fp"
+            >Forgot Password</a
+          >
+        </div>
+        <!-- <br><a *ngIf="!adminLogin" [routerLink]="['/admin/login']" class="primary-link" >Login as admin</a> -->
+        <div class="d-f j-c-s-b mt-3 ins">
+          <a [routerLink]="'/vendor/login'" class="primary-link"
+            >Login as Vendor</a
+          >
+          <p *ngIf="!adminLogin">
+            Don't have an account?
+            <a [routerLink]="['/signup']" class="primary-link">SignUp</a>
+            <!-- <span class="primary-link" (click)="signup()">SignUp</span> -->
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

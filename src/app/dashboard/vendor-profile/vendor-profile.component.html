@@ -1,0 +1,200 @@
+<div class="dash-content-wrap">
+  <section class="dash-hero-banner mb-5">
+    <figure class="banner_img">
+      <img
+        src="{{
+          getImage(vendor?.account_id?.cover) || 'assets/images/cover1.jpg'
+        }}"
+        onerror="this.onerror=null;this.src='assets/images/cover1.jpg';"
+        alt="banner-img"
+      />
+    </figure>
+    <div class="hero-bottom-icon">
+      <span class="icon">
+        <img
+          src="{{
+            getImage(vendor?.account_id?.avatar) || 'assets/images/user_default.svg'
+          }}"
+          onerror="this.onerror=null;this.src='assets/images/user_default.svg';"
+        />
+      </span>
+    </div>
+    <div class="add-fav-icon cursor-pointer" (click)="addToFav()">
+      <span class="icon">
+        <span class="material-icons"> favorite_border </span>
+      </span>
+    </div>
+    <div class="live_chat_icon cursor-pointer" (click)="chat()" *ngIf="vendor._id">
+      <img src="assets/images/livechat.svg" />
+    </div>
+  </section>
+
+  <div class="products-block pt-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="left-content">
+          <h2 class="main-heading">
+            {{ vendor?.first_name }} {{ vendor?.last_name }}
+          </h2>
+          <h5 class="main-sub-heading">
+            {{ vendor?.account_id?.title }}
+          </h5>
+          <p>
+            {{ vendor?.account_id?.about }}
+          </p>
+          <!-- <div class="btn-wrap mt-5">
+            <a href="javascript:void(0);" class="main-btn">Signup to shop</a>
+          </div> -->
+        </div>
+        <!-- <div class="dash-review-wrap mt-5">
+          <div class="review-data-card">
+            <div class="review-head">
+              <figure><img src="assets/images/user_default.svg" /></figure>
+              <div class="review-info">
+                <h4>Old Customer</h4>
+                <span class="rating-star">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </span>
+              </div>
+            </div>
+            <div class="review-body">
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged.
+              </p>
+            </div>
+          </div>
+          <div class="review-data-card">
+            <div class="review-head">
+              <figure><img src="assets/images/user_default.svg" /></figure>
+              <div class="review-info">
+                <h4>Old Customer</h4>
+                <span class="rating-star">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </span>
+              </div>
+            </div>
+            <div class="review-body">
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged.
+              </p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="col-lg-8">
+        <div class="row">
+          <div
+            class="col-lg-4 col-md-4"
+            *ngFor="let prod of products; let i = index"
+          >
+            <div class="product-card">
+              <figure class="product-img">
+                <img
+                  src="{{ prod.images[0] }}"
+                  onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                  alt=""
+                  *ngIf="prod.images"
+                />
+              </figure>
+              <div class="product-des">
+                <h3>{{ prod?.title }}</h3>
+                <div class="price-bar d-f j-c-s-b a-i-c">
+                  <h4>
+                    {{ prod?.product_type }}
+                    <!-- Price: $44.00 -->
+                  </h4>
+                  <a href="javascript:void(0);" (click)="addProduct(prod)" class="normal-icon" *ngIf="modelS.allStores.length"
+                    ><i class="far fa-plus-circle"></i
+                  ></a>
+                </div>
+                <!-- <div class="pd-bottom-bar">
+                  <label>Listed By:</label>
+                  <div class="d-f j-c-s-b a-i-c">
+                    <h3>Vendor Name here</h3>
+                    <a href="javasctipt:void(0);" class="icon"
+                      ><i class="far fa-eye"></i
+                    ></a>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <nz-pagination
+        [nzPageIndex]="page"
+        [nzTotal]="total"
+        (nzPageIndexChange)="paginate($event)"
+      ></nz-pagination>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>
+
+
+<nz-modal
+  [(nzVisible)]="isStoreVisible"
+  nzClassName="custom_nzmodal"
+  nzTitle="select specific store or all stores to import product into."
+  nzOkText="Add Product"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="checkUserAgreement()"
+>
+  <ng-container *nzModalContent>
+    <label>Select Store</label>
+    <nz-select
+      [(ngModel)]="selectedStore"
+      *ngIf="shopiFyStores.length"
+      nzPlaceHolder="Choose Store"
+      (ngModelChange)="storeChange()"
+    >
+      <!-- <nz-option [nzValue]="'all'" nzLabel="All"></nz-option> -->
+      <nz-option
+        [nzValue]="store?.store_id"
+        nzLabel="{{ store?.domain }}"
+        *ngFor="let store of shopiFyStores"
+      ></nz-option>
+    </nz-select>
+  </ng-container>
+</nz-modal>
+
+<nz-modal
+  [(nzVisible)]="isAgreementVisible"
+  nzClassName="custom_nzmodal agreement_modal"
+  [nzTitle]=""
+  (nzOnCancel)="cancelAgreement()"
+  [nzFooter]="null"
+>
+<ng-container *nzModalContent>
+    <span class="agreement_title"><span nz-icon nzType="info-circle" nzTheme="outline" class="agreement_title_icon"></span>User Agreement</span>
+    <div class="agreement_container custom-scroll">
+      <div [innerHtml]="modelS?.userAgreementContent"></div>
+    </div>
+    <div class="agreement_footer">
+      <div>
+        <label class="agreement_checkbox" nz-checkbox [(ngModel)]="agreementAccept">I have read all conditions carefully.</label>
+      </div>
+      
+      <button nz-button class="agreement_save_btn" (click)="checkProductToStore()" [disabled]="!agreementAccept">Accept and Continue</button>
+    </div>
+  </ng-container>
+</nz-modal>

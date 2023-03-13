@@ -1,0 +1,30 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b mb-5">
+    <h3 class="dash-title">Data Analytics</h3>
+    <!-- <a href="javascript:void(0);" class="cstm-btn">Add New Product</a> -->
+  </div>
+  <div class="dash-content-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <google-chart
+          [title]="chart.title"
+          [type]="chart.type"
+          [data]="chart.data"
+          [columns]="chart.columnNames"
+          [options]="chart.options"
+        >
+        </google-chart>
+      </div>
+      <div class="col-lg-6">
+        <google-chart
+          [title]="chart.title"
+          [type]="'LineChart'"
+          [data]="chart.data"
+          [columns]="chart.columnNames"
+          [options]="chart.options"
+        >
+        </google-chart>
+      </div>
+    </div>
+  </div>
+</div>

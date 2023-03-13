@@ -1,0 +1,42 @@
+<div class="dash-content-wrap">
+    <div class="dash-content-head d-f j-c-s-b mb-5">
+      <h3 class="dash-title">
+        Customer information
+      </h3>
+      <!-- <a href="javascript:void(0);" class="cstm-btn">Add New Customer</a> -->
+    </div>
+    <div class="dash-content-body">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="dash-card">
+            <div class="dash-head">
+              <h4 class="card-title">
+                {{ customer?.first_name }} {{ customer?.last_name }}
+              </h4>
+            </div>
+            <div class="dash-body">
+              <ul class="listing-row">
+                <li><label>First Name:</label> <p>{{ customer?.first_name || 'N/A' }}</p></li>
+                <li><label>Last Name:</label> <p>{{ customer?.last_name || 'N/A' }}</p></li>
+                <li><label>Email Id:</label> <p>{{ customer?.email || 'N/A' }}</p></li>
+                <li><label>About:</label> <p>{{ customer?.account_id?.about || 'N/A' }}</p></li>
+                <li><label>Company:</label> <p>{{ customer?.account_id?.company || 'N/A' }}</p></li>
+                <!-- <li><label>Shopify Id:</label> <p>{{ customer?.shopify_id || 'N/A' }}</p></li>
+                <li><label>Phone Number:</label> <p>{{ customer?.phone || 'N/A'}}</p></li>
+                <li><label>Address Line 1:</label> <p> {{ customer?.address_line1 || 'N/A'}}</p></li>
+                <li><label>Address Line 2:</label> <p> {{ customer?.address_line2 || 'N/A'}}</p></li> -->
+
+                <li><label>Street:</label> <p> {{ customer?.account_id?.address_street || 'N/A'}}</p></li>
+                <li><label>City:</label> <p> {{ customer?.account_id?.address_city || 'N/A'}}</p></li>
+                <li><label>State:</label> <p> {{ customer?.account_id?.address_state || 'N/A'}}</p></li>
+                <li><label>Country:</label> <p> {{ customer?.account_id?.address_country || 'N/A'}}</p></li>
+                <li><label>Zip Code:</label> <p> {{ customer?.account_id?.address_zip || 'N/A'}}</p></li>
+              </ul>
+               </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-ui-loader [fgsType]="api?.loaderType" [fgsColor]="api?.loaderColor" [pbColor]="api?.loaderColor"  [fgsSize]="'80'"></ngx-ui-loader>
+  

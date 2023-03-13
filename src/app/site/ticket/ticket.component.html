@@ -1,0 +1,261 @@
+<section class="chat-sec">
+  <div class="ud-card" *ngIf="id.length">
+    <div class="container">
+      <div class="ticket">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="ticket__body">
+              <article class="ticket__body_block shadow-card">
+                <h3>{{ ticket?.subject }}</h3>
+                <div class="block--head">
+                  <div class="contact">
+                    <div class="d-flex j-c-s-b mb-2">
+                      <h4>Contact infomation:</h4>
+                      <span
+                        class="timeago"
+                        >{{ api.fromNow(ticket?.createdAt) }}</span
+                      >
+                    </div>
+                    <div class="dropdown left out-close">
+                      <div class="cnt-field">
+                        <label class="info-label">Name:</label>
+                        <span>{{ ticket?.name }}</span>
+                      </div>
+                      <div class="cnt-field">
+                        <label class="info-label">Email:</label>
+                        <a href="mailto:{{ ticket?.email }}">{{
+                          ticket?.email
+                        }}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="block--description browser-default">
+                  <p>{{ ticket?.message }}</p>
+                </div>
+                <div
+                  class="block--description browser-default"
+                  *ngIf="ticket && ticket.file"
+                >
+                  <b>File:</b>
+                  <a
+                    href="{{ api.fileUrl }}uploads/support/{{
+                      getFile(ticket?.file)
+                    }}"
+                    target="_blank"
+                    >{{ getFile(ticket?.file) }}</a
+                  >
+                </div>
+              </article>
+              <div *ngIf="ticket && ticket.reply.length">
+                <article
+                  class="ticket__body_block shadow-card"
+                  *ngFor="let reply of ticket.reply"
+                >
+                  <div class="block--head">
+                    <div class="contact">
+                      <div class="d-flex j-c-s-b mb-2">
+                        <h4>
+                          Reply by:
+                          <b>{{
+                            reply.user_id && reply.user_id._id ? "Udify" : ticket?.name
+                          }}</b>
+                        </h4>
+                        <span
+                          class="timeago"
+                          >{{ api.fromNow(reply?.createdAt) }}</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="block--description browser-default">
+                    <p>{{ reply?.message }}</p>
+                    <div *ngIf="reply.user_id && reply.user_id._id">
+                      <br />Sincerely,
+                      <br />
+                      Udify Staff<br />
+                      <a href="http://udify.pamsar.com/"
+                        >http://udify.pamsar.com/</a
+                      ><br />
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <article
+                class="ticket__body_block shadow-card"
+                *ngIf="
+                  ticket.status !== 'Resolved' && ticket.status !== 'resolved'
+                "
+              >
+              <h3>Add reply</h3>
+               
+                <div class="form-group required">
+                  <label class="form-label">Message</label>
+                  <textarea
+                    name="message"
+                    class="form-control"
+                    [(ngModel)]="reply"
+                  ></textarea>
+                </div>
+                <!-- <section class="form__submit">
+                  <button
+                    type="button"
+                    class="btn btn-full"
+                    ripple="ripple"
+                    [disabled]="!reply.length"
+                    (click)="saveReply()"
+                  >
+                    Submit reply
+                    <div class="ripple--container"></div>
+                  </button>
+                </section> -->
+                <section class="form__submit mb-3">
+                  <button
+                    type="button"
+                    class="cstm-btn  btn btn-full"
+                    ripple="ripple"
+                    [disabled]="!reply.length"
+                    (click)="saveReply()"
+                  >
+                    Submit reply
+                    <div class="ripple--container"></div>
+                  </button>
+                </section>
+              </article>
+
+              <!-- <div *ngIf="ticket && ticket.reply.length">
+            <article
+              class="ticket__body_block response"
+              *ngFor="let reply of ticket.reply"
+            >
+              <div class="block--head">
+                <div class="contact">
+                  Reply by
+                  <b>{{ reply.user_id.length ? "Udify" : ticket?.name }}</b>
+                  »
+                  <time
+                    class="timeago"
+                    datetime="2022-07-02T10:39:37-05:00"
+                    title="2022-07-02 10:39:37"
+                    >{{ api.fromNow(reply?.createdAt) }}</time
+                  >
+                </div>
+              </div>
+              <div class="block--description browser-default">
+                <p>{{ reply?.message }}</p>
+                <div *ngIf="reply.user_id.length">
+                  <br />Sincerely,
+                  <br />
+                  Udify Staff<br />
+                  <a href="http://udify.pamsar.com/">http://udify.pamsar.com/</a
+                  ><br />
+                </div>
+              </div>
+            </article>
+          </div>
+          <br />
+
+          <article
+            class="ticket__body_block shadow-card"
+            *ngIf="ticket.status !== 'Closed' || ticket.status !== 'closed'"
+          >
+            <div class="text-bold">Add reply</div>
+            <div class="form-group required">
+              <label class="label">Message</label>
+              <textarea
+                name="message"
+                class="form-control"
+                [(ngModel)]="reply"
+              ></textarea>
+            </div>
+            <section class="form__submit">
+              <button
+                type="button"
+                class="btn btn-full"
+                ripple="ripple"
+                [disabled]="!reply.length"
+                (click)="saveReply()"
+              >
+                Submit reply
+                <div class="ripple--container"></div>
+              </button>
+            </section>
+          </article> -->
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="ticket__params shadow-card">
+              <section class="params--block details collapsed-on-xs">
+                <ul class="ticket-detail-list">
+                  <li><label>Ticket Details</label> <span class="btn link" (click)="getTicket()">
+                    <i nz-icon nzType="sync" nzTheme="outline"></i>
+                    <span class="ml-1">Refresh this page</span>
+                  </span>
+                </li>
+                <li> <label>Tracking ID:</label> <span>{{ ticket?.id }}</span></li>
+                <li> <label>Ticket status:</label> <span>{{ ticket?.status }}</span></li>
+                <li> <label>Ticket status:</label> <span>{{ ticket?.status }} 
+                  <i *ngIf=" ticket.status !== 'Resolved' && ticket.status !== 'resolved' ">
+                  [<a class="link" (click)="markAsResolved()"
+                        >Mark as Closed</a
+                      >]
+                    </i>
+                   </span>                  
+               </li>
+               <li> <label>Created on:</label> <span>{{ ticket?.createdAt | date: "dd/MM/yyyy hh:mm a" }}</span></li>
+               <li> <label>Updated:</label> <span>{{ ticket?.updated_at | date: "dd/MM/yyyy hh:mm a" }}</span></li>
+               <li> <label>Last replier:</label> <span>{{ getLastReplier() }}</span></li>
+               <li> <label>Category</label> <span>{{ ticket?.category }}</span></li>
+               <li> <label>Replies:</label> <span>{{ ticket?.reply.length }}</span></li>
+                </ul>
+                
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ud-card" *ngIf="!id.length">
+    <div class="container">
+      <div class="ud-card-inn">
+        <ul class="ticket-check-list mb-4">
+          <li>
+            <a class="ticket-check-btn"
+              ><span class="ticket--btn-icon"
+                ><i nz-icon nzType="file-add" nzTheme="outline"></i
+              ></span>
+              <h4>View existing ticket</h4>
+            </a>
+          </li>
+        </ul>
+        <div class="form-group">
+          <label class="form-label">Ticket tracking ID</label>
+          <input type="text" class="form-control" [(ngModel)]="ticketId" />
+        </div>
+        <div class="text-center mb-4">
+          <button
+            nz-button
+            nzType="primary"
+            class="cstm-btn"
+            (click)="viewTicket()"
+          >
+            View Ticket
+          </button>
+        </div>
+        <div class="text-center">
+          <a (click)="forgotTracking()" class="normal-link"
+            >Forgot tracking ID?
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

@@ -1,0 +1,141 @@
+<!-- <dashboard-header></dashboard-header> -->
+<nz-layout>
+    <nz-header class="dash-header">
+      <div class="container-fluid">
+        <div class="naigation">
+          <div class="left-nav">
+            <div class="main-logo" [routerLink]="['/admin']">
+              <img src="assets/images/logo.png" />
+            </div>
+            <!-- <mat-icon aria-label="material-icons-outlined" (click)="isCollapsed = !isCollapsed">menu</mat-icon> -->
+          </div>
+          <div class="right-nav">
+            <!-- <div class="head-search-bar">
+              <input type="text" class="search-input" placeholder="Search" />
+              <span class="input_icon"><i class="fas fa-search"></i></span>
+            </div> -->
+  
+            <ul class="nav-action-list">
+              <!-- <li>
+                <div class="cstm-select">
+                  <nz-select
+                    [(ngModel)]="selectedStore"
+                    *ngIf="shopiFyStores.length"
+                    nzPlaceHolder="Choose Store"
+                  >
+                    <nz-option [nzValue]="'all'" nzLabel="All"></nz-option>
+                    <nz-option
+                      [nzValue]="store?.store_id"
+                      nzLabel="{{ store?.domain }}"
+                      *ngFor="let store of shopiFyStores"
+                    ></nz-option>
+                  </nz-select>
+                </div>
+              </li> -->
+              <li>
+                <a href="javascript:void(0);" class="icon-button"
+                  ><i class="fas fa-question"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0);" class="icon-button"
+                  ><i class="fas fa-bell"></i
+                ></a>
+              </li>
+              <li>
+                <a [routerLink]="['/dashboard/profile']" class="icon-button"
+                  ><i class="fas fa-user"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0);" class="icon-button"
+                  ><i class="fas fa-cog"></i
+                ></a>
+              </li>
+  
+              <li>
+                <div class="drop-down-btn">
+                  <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+                    <span class="pro_img">
+                      <img
+                        [src]="
+                          user?.account?.avatar
+                            ? user.account.avatar
+                            : 'assets/images/user_default.svg'
+                        "
+                        onerror="this.src='assets/images/user_default.svg'"
+                      />
+                    </span>
+                    {{ user?.first_name }}
+                    <i class="fas fa-chevron-down ml-2"></i>
+                  </a>
+  
+                  <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                      <li nz-menu-item (click)="logout()">Log out</li>
+                    </ul>
+                  </nz-dropdown-menu>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nz-header>
+    <nz-layout>
+      <nz-sider
+        nzWidth="250px"
+        nzTheme="light"
+        nzCollapsible
+        [(nzCollapsed)]="isCollapsed"
+        [nzTrigger]="null"
+      >
+        <!-- <h4 class="sidebar-title my-4">MY STORES</h4> -->
+        <ul nz-menu nzMode="inline" class="sider-menu">
+          <li nz-menu-item [routerLink]="['/admin/home']">
+            <i nz-icon nzType="dashboard" nzTheme="outline"></i>
+            <span>Dashboard</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/admin/users']">
+            <i nz-icon nzType="user" nzTheme="outline"></i>
+            <span>Users</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/admin/plans']">
+            <i nz-icon nzType="user" nzTheme="outline"></i>
+            <span>Plans</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/admin/support']">
+            <i nz-icon nzType="user" nzTheme="outline"></i>
+            <span>Support</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/admin/knowledgebase']">
+            <i nz-icon nzType="user" nzTheme="outline"></i>
+            <span>Knowledgebase</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/admin/cms']">
+            <i nz-icon nzType="user" nzTheme="outline"></i>
+            <span>CMS Pages</span>
+          </li>
+        </ul>
+      </nz-sider>
+      <nz-layout class="inner-layout">
+        <nz-content>
+          <router-outlet id="dashboard-router"></router-outlet>
+        </nz-content>
+      </nz-layout>
+    </nz-layout>
+    <footer class="dash-footer">
+      <div class="container">
+        <div class="ftr-bottom text-center">
+          <p>Copyright 2022 Udify.io. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </nz-layout>
+  <ngx-ui-loader
+    [fgsType]="api?.loaderType"
+    [fgsColor]="api?.loaderColor"
+    [pbColor]="api?.loaderColor"
+    [fgsSize]="'80'"
+  ></ngx-ui-loader>
+  

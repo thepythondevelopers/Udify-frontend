@@ -1,0 +1,36 @@
+.ins{
+    padding: 0px 35px 0px 40px
+}
+.adsa{
+    padding-top: 100px;
+}
+.fp{
+    color: rgba(54, 54, 54, 0.38);
+}
+.drop_down{
+    position: absolute;
+    left: 1330px;
+    top: 55px;
+}
+#angle-down{
+    font-size:20px;
+    cursor: pointer;
+}
+.customer{
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    margin: 20px 0px 0px -4px;
+    cursor: pointer;
+}
+.vendor{
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    margin: 20px 0px 0px -4px;
+    cursor: pointer;
+}

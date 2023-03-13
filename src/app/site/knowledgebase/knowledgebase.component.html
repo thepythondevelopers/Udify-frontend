@@ -1,0 +1,27 @@
+<section class="single-ticket-sec py-5">
+  <div class="container">
+<div class="ticket-list-block single-ticket-record my-5">
+    <ul class="ticket-listing">
+      <li>
+        <a href="javascript:void(0);" class="ticket-list-box">
+          <span class="ticket--btn-icon"
+            ><i nz-icon nzType="container" nzTheme="outline"></i
+          ></span>
+          <h4>{{knowledge?.title}}</h4>
+          <span class="ticket-cat"
+            ><strong>Category:</strong> {{knowledge?.category}}</span
+          >
+          <p [innerHtml]="knowledge?.description"></p>
+        </a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</section>
+
+  <ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

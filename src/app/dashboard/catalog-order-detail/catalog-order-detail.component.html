@@ -1,0 +1,209 @@
+<div class="dash-content-wrap1">
+  <div class="dash-content-head d-f j-c-s-b mb-5">
+    <h3 class="dash-title">Catalog Order Detail</h3>
+    <span class="cursor-pointer cstm-btn" (click)="goBack()"
+      ><span nz-icon nzType="arrow-left" nzTheme="outline"></span>Back to
+      list</span
+    >
+  </div>
+  <div class="dash-content-body">
+    <div class="cv-slider-card">
+      <div class="image_swiper_col position_relative">
+        <div
+          class="swiper_arrows outer_swiper_arrows arrow_left"
+          (click)="changeSlide('pre', 'prodSlider')"
+        >
+          <span nz-icon nzType="left" nzTheme="outline"></span>
+        </div>
+        <div
+          class="swiper_arrows outer_swiper_arrows arrow_right"
+          (click)="changeSlide('next', 'prodSlider')"
+        >
+          <span nz-icon nzType="right" nzTheme="outline"></span>
+        </div>
+        <nz-carousel
+          [nzEffect]="effect"
+          nzEnableSwipe="false"
+          nzDots="false"
+          class="prod_swiper"
+          #prodSlider
+        >
+          <div nz-carousel-content *ngFor="let prod of order?.line_items">
+            <div class="outer_swiper_container">
+              <div class="cv-mang-row">
+                <div nz-row>
+                  <div nz-col nzSpan="12" class="radius-left">
+                    <div class="image_swiper_col position_relative">
+                      <div
+                        class="swiper_arrows inner_swiper_arrows arrow_left"
+                        (click)="changeSlide('pre', 'imageSlider')"
+                      >
+                        <span nz-icon nzType="left" nzTheme="outline"></span>
+                      </div>
+                      <div
+                        class="swiper_arrows inner_swiper_arrows arrow_right"
+                        (click)="changeSlide('next', 'imageSlider')"
+                      >
+                        <span nz-icon nzType="right" nzTheme="outline"></span>
+                      </div>
+                      <nz-carousel
+                        [nzEffect]="effect"
+                        nzEnableSwipe="false"
+                        nzDots="false"
+                        class="prod_image_swiper"
+                        #imageSlider
+                        *ngIf="prod.images && prod.images.length"
+                      >
+                        <div
+                          nz-carousel-content
+                          *ngFor="let img of prod?.images; let i = index"
+                        >
+                          <img
+                            src="{{ img?.src }}"
+                            onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                          />
+                        </div>
+                      </nz-carousel>
+                      <nz-carousel
+                        [nzEffect]="effect"
+                        nzEnableSwipe="false"
+                        nzDots="false"
+                        class="prod_image_swiper"
+                        #imageSlider
+                        *ngIf="!prod.images || !prod.images.length"
+                      >
+                        <div nz-carousel-content>
+                          <img
+                            src="assets/images/nophoto.jpg"
+                            onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                          />
+                        </div>
+                      </nz-carousel>
+                      <div class="slider-thumnail-wrap custom-scroll">
+                        <ul
+                          class="slider-thumnail-list"
+                          *ngIf="prod.images && prod.images.length"
+                        >
+                          <li
+                            *ngFor="let img of prod?.images; let i = index"
+                            (click)="slideTo(i, 'imageSlider')"
+                          >
+                            <img
+                              src="{{ img?.src }}"
+                              onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                            />
+                          </li>
+                        </ul>
+                        <ul
+                          class="slider-thumnail-list"
+                          *ngIf="!prod.images || !prod.images.length"
+                        >
+                          <li>
+                            <img
+                              src="assets/images/nophoto.jpg"
+                              onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                            />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div nz-col nzSpan="12" class="cv-set-bg-color radius-right">
+                    <div class="cv-product_details">
+                      <h3 class="cv-product-title">{{ prod?.title }}</h3>
+                      <p class="prod_price">
+                        {{ prod?.price | currency: getCurrency(prod) }}
+                      </p>
+                      <div>
+                        <div class="cv-detail-data">
+                          <label class="cv-detail-label">Description:</label>
+                          <p [innerHtml]="prod?.description">
+                          </p>
+                        </div>
+                        <div class="cv-detail-data" *ngIf="prod?.variant">
+                          <label class="cv-detail-label">Specifications:</label>
+                          <ul class="spec-list">
+                            <li>
+                              <p>
+                               {{prod?.variant?.title}}
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                {{prod?.variant?.weight}} {{prod?.variant?.weight_unit}}
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                {{prod?.variant?.price | currency: getCurrency(prod)}}
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nz-carousel>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-content-body mt-5" style="padding: 0px 2%;">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="dash-card">
+          <div class="dash-head">
+            <h4 class="card-title">Order Information</h4>
+          </div>
+          <div class="dash-body">
+            <ul class="listing-row">
+              <li>
+                <label>Order:</label>
+                <p>{{ order?.name || "N/A" }}</p>
+              </li>
+              <li>
+                <label>Payment Status:</label>
+                <p>{{ order?.financial_status || "N/A" }}</p>
+              </li>
+              <li>
+                <label>Payment Gateway:</label>
+                <p>{{ order?.gateway || "N/A" }}</p>
+              </li>
+              <li>
+                <label>Subtotal:</label>
+                <p>{{ order?.subtotal | currency: order.currency }}</p>
+              </li>
+              <li>
+                <label>Tax:</label>
+                <p>{{ order?.total_tax | currency: order.currency }}</p>
+              </li>
+              <li>
+                <label>Total:</label>
+                <p>{{ order?.total | currency: order.currency }}</p>
+              </li>
+            </ul>
+            <div class="btn-wrap mt-4">
+              <a
+                *ngIf="order.order_status_url"
+                href="{{ order?.order_status_url }}"
+                target="_blank"
+                class="cstm-btn"
+                >View Order Status</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-ui-loader
+    [fgsType]="api?.loaderType"
+    [fgsColor]="api?.loaderColor"
+    [pbColor]="api?.loaderColor"
+    [fgsSize]="'80'"
+  ></ngx-ui-loader>
+</div>

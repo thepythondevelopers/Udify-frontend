@@ -1,0 +1,175 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b mb-5">
+    <h3 class="dash-title">
+      {{ id.length ? "Edit Plans" : "Add Plans" }}
+    </h3>
+    <!-- <a href="javascript:void(0);" class="cstm-btn">Add New Customer</a> -->
+  </div>
+  <div class="dash-content-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="dash-card">
+          <div class="dash-head">
+            <div class="dash-body">
+              <form [formGroup]="planForm" (ngSubmit)="submitForm()">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-label">Title</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="name"
+                      />
+                      <div
+                        *ngIf="
+                          planForm.get('name').invalid &&
+                          planForm.get('name').touched
+                        "
+                        class="input-error"
+                      >
+                        <div *ngIf="planForm.get('name').errors.required">
+                          Title is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-label">Price</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="price"
+                        [readonly]="id.length"
+                      />
+                      <div
+                        *ngIf="
+                          planForm.get('price').invalid &&
+                          planForm.get('price').touched
+                        "
+                        class="input-error"
+                      >
+                        <div *ngIf="planForm.get('price').errors.required">
+                          Price is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-label">Time Period</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="time_period"
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        planForm.get('time_period').invalid &&
+                        planForm.get('time_period').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="planForm.get('time_period').errors.required">
+                        Time period is required.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-label">Time Period Type</label>
+                      <nz-select formControlName="time_period_type">
+                        <nz-option nzValue="days" nzLabel="Days"></nz-option>
+                        <nz-option nzValue="monthly" nzLabel="Monthly"></nz-option>
+                        <nz-option nzValue="yearly" nzLabel="Yearly"></nz-option>
+                      </nz-select>
+                    </div>
+                    <div
+                      *ngIf="
+                        planForm.get('time_period_type').invalid &&
+                        planForm.get('time_period_type').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="planForm.get('time_period_type').errors.required">
+                        Time period type is required.
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-label">Plan Type</label>
+                      <nz-select formControlName="type">
+                        <nz-option nzValue="basic" nzLabel="Basic"></nz-option>
+                        <nz-option
+                          nzValue="popular"
+                          nzLabel="Popular"
+                        ></nz-option>
+                        <nz-option
+                        nzValue="pro"
+                        nzLabel="Pro"
+                      ></nz-option>
+                        <nz-option
+                          nzValue="enterprise"
+                          nzLabel="Enterprise"
+                        ></nz-option>
+                      </nz-select>
+                      <div
+                        *ngIf="
+                          planForm.get('type').invalid &&
+                          planForm.get('type').touched
+                        "
+                        class="input-error"
+                      >
+                        <div *ngIf="planForm.get('type').errors.required">
+                          Plan type is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-label">Plan Features</label>
+                      <div id="editor" formControlName="features"></div>
+                      <div
+                        *ngIf="
+                          planForm.get('features').invalid &&
+                          planForm.get('features').touched
+                        "
+                        class="input-error"
+                      >
+                        <div *ngIf="planForm.get('features').errors.required">
+                          Plan features type is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="btn-wrap mt-4">
+                  <button type="button" class="cstm-btn" (click)="submitForm()">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-ui-loader
+    [fgsType]="api?.loaderType"
+    [fgsColor]="api?.loaderColor"
+    [pbColor]="api?.loaderColor"
+    [fgsSize]="'80'"
+  ></ngx-ui-loader>
+</div>

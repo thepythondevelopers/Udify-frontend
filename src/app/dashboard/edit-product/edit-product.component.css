@@ -1,0 +1,7 @@
+@import url(../dashboard.component.css);
+
+span.selImg {
+    position: relative;
+    width: 300px;
+    margin-left: 20px;
+}

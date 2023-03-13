@@ -1,0 +1,6 @@
+@import url(../dashboard.component.css);
+
+.main-title {
+    color: var(--primary-color);
+    font-size: 32px;
+}

@@ -1,0 +1,8 @@
+<div class="chat_container">
+    <div class="chat_list_container">
+        <vendor-chat-list [customer]="customer" (openChat)="openChat($event)"></vendor-chat-list>
+    </div>
+    <div class="chat_detail_container">
+        <vendor-chat-detail [chat]="selectedChat"></vendor-chat-detail>
+    </div>
+</div>

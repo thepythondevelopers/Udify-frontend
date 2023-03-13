@@ -1,0 +1,25 @@
+<nz-header class="main-header">
+    <div class="container">
+      <div class="naigation">
+        <div class="main-logo" [routerLink]="['/']"><img src="assets/images/logo.png" /></div>
+        <ul nz-menu nzTheme="light" class="nav-menus" nzMode="horizontal">
+          <li nz-menu-item [routerLink]="['/']" >Home</li>
+          <li nz-menu-item [routerLink]="['/become-partner']" >Become a Partner</li>
+          <li nz-menu-item [routerLink]="['/plans']" >Plans & Pricing</li>
+          <li nz-menu-item [routerLink]="['/support']" >Support</li>
+        </ul>
+        <button
+          nz-button
+          nzType="primary"
+          class="cstm-btn"
+          [nzSize]="'default'"
+          nzShape="round"
+          [routerLink]="['/signin']"
+        >
+          Login
+          
+          <mat-icon class="material-icons-outlined ml-2" >account_circle</mat-icon>
+        </button>
+      </div>
+    </div>
+  </nz-header>

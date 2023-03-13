@@ -1,0 +1,93 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b mb-5">
+    <h3 class="dash-title">Product</h3>
+    <!-- <a href="javascript:void(0);" class="cstm-btn">Add New product</a> -->
+  </div>
+  <div class="dash-content-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="dash-card">
+          <div class="dash-head">
+            <h4 class="card-title">
+              <!-- {{ product?.first_name }} {{ product?.last_name }} -->
+              {{product?.title}}
+            </h4>
+          </div>
+          <div class="dash-body">
+            <nz-carousel class="mb-5" [nzEnableSwipe]="false">
+              <div nz-carousel-content *ngFor="let image of productImages">
+                <!-- <h3>{{ image }}</h3> -->
+                <img src="{{ image?.src }}" />
+              </div>
+            </nz-carousel>
+            <div class="row">
+              <div class="col-lg-12">
+                <ul class="listing-row">
+                  <li>
+                    <label>Product:</label>
+                    <p>{{ product?.title || "N/A" }}</p>
+                  </li>
+                  <li>
+                    <label>Category:</label>
+                    <p>{{ product?.product_type || "N/A" }}</p>
+                  </li>
+                  <li>
+                    <label>Vendor:</label>
+                    <p>{{ product?.vendor || "N/A" }}</p>
+                  </li>
+                  <li>
+                    <label>Tags:</label>
+                    <p>{{ product?.tags || "N/A" }}</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-12">
+                <div *ngIf="product.variant">
+                  <div class="dash-card1 mt-5">
+                    <div class="dash-head1">
+                      <h4 class="card-title">Varients:</h4>
+                    </div>
+                    <div class="table-card">
+                      <table class="table dash-table">
+                        <thead>
+                          <tr>
+                            <td>Title</td>
+                            <td>Price</td>
+                            <td>Weight</td>
+                            <td>Taxable</td>
+                            <td>SKU</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let vari of product.variant">
+                            <td>{{ vari?.title || "N/A" }}</td>
+                            <td>{{ "$" + vari?.price || "N/A" }}</td>
+                            <td>
+                              {{ vari?.weight || "N/A" }}
+                              {{ vari.weight ? vari?.weight_unit : "" }}
+                            </td>
+                            <td>{{ vari?.taxable ? "Yes" : "No" }}</td>
+                            <td>{{ vari?.sku || "N/A" }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <br />
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </div>
+              <div [innerHtml]="product?.body_html" class="ctm-content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-ui-loader
+    [fgsType]="api?.loaderType"
+    [fgsColor]="api?.loaderColor"
+    [pbColor]="api?.loaderColor"
+    [fgsSize]="'80'"
+  ></ngx-ui-loader>
+</div>

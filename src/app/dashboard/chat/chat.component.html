@@ -1,0 +1,8 @@
+<div class="chat_container">
+    <div class="chat_list_container">
+        <app-chat-list [vendor]="vendor" (openChat)="openChat($event)"></app-chat-list>
+    </div>
+    <div class="chat_detail_container">
+        <app-chat-detail [chat]="selectedChat"></app-chat-detail>
+    </div>
+</div>

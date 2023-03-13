@@ -1,0 +1,398 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b mb-5">
+    <h3 class="dash-title">{{ id.length ? "Edit Product" : "Add Product" }}</h3>
+    <!-- <a href="javascript:void(0);" class="cstm-btn">Add New Product</a> -->
+  </div>
+  <div class="dash-content-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="dash-card">
+          <div class="dash-head">
+            <h3 class="card-title">
+              {{ id.length ? "Edit Product" : "Add Product" }}
+            </h3>
+          </div>
+          <div class="dash-body edit-prod">
+            <form [formGroup]="productForm">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Title</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="title"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      productForm.get('title').invalid &&
+                      productForm.get('title').touched
+                    "
+                    class="input-error"
+                  >
+                    <div *ngIf="productForm.get('title').errors.required">
+                      Title is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Vendor</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="vendor"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      productForm.get('vendor').invalid &&
+                      productForm.get('vendor').touched
+                    "
+                    class="input-error"
+                  >
+                    <div *ngIf="productForm.get('vendor').errors.required">
+                      Vendor is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Product Type</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="product_type"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      productForm.get('product_type').invalid &&
+                      productForm.get('product_type').touched
+                    "
+                    class="input-error"
+                  >
+                    <div
+                      *ngIf="productForm.get('product_type').errors.required"
+                    >
+                      Product type is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-lg-6"
+                  *ngIf="!id.length && modelS.allStores.length"
+                >
+                  <div class="form-group">
+                    <label class="form-label">Store</label>
+                    <nz-select
+                      class="cstm_select"
+                      formControlName="store"
+                      nzPlaceHolder="Choose Store"
+                    >
+                      <nz-option
+                        [nzValue]="store?.store_id"
+                        nzLabel="{{ store?.domain }}"
+                        *ngFor="let store of modelS.allStores"
+                      ></nz-option>
+                    </nz-select>
+                  </div>
+                  <div
+                    *ngIf="
+                      productForm.get('store').invalid &&
+                      productForm.get('store').touched
+                    "
+                    class="input-error"
+                  >
+                    <div *ngIf="productForm.get('store').errors.required">
+                      Store is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <!-- <textarea
+                        class="form-control"
+                        placeholder=""
+                        formControlName="body_html"
+                        style="height: 120px; resize: none"
+                      ></textarea> -->
+                    <!-- <div class="editor-container" [froalaEditor] formControlName="body_html"></div> -->
+                    <!-- <textarea class="editor-container" id="editor" formControlName="body_html"></textarea> -->
+                    <div id="editor" formControlName="body_html"></div>
+
+                    <div
+                      *ngIf="
+                        productForm.get('body_html').invalid &&
+                        productForm.get('body_html').touched
+                      "
+                      class="input-error"
+                    >
+                      <div *ngIf="productForm.get('body_html').errors.required">
+                        Description is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="btn-wrap mt-4 mb-5">
+                    <button
+                      type="button"
+                      class="cstm-btn"
+                      (click)="submitProduct()"
+                    >
+                      {{ id.length ? "Save Product" : "Add Product" }}
+                    </button>
+                  </div>
+                </div>
+
+               
+              </div>
+            </form>
+
+            <br />
+
+            <div class="dash-card">
+              <div class="dash-head">
+                <h3 class="card-title">Product Images</h3>
+              </div>
+
+              <div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-label">Image</label>
+                    <input
+                      id="prod-image"
+                      type="file"
+                      class="form-control"
+                      [disabled]="selImages.length >= 2"
+                      (change)="prodImageChange($event.target)"
+                    />
+                  </div>
+                </div>
+
+                <!-- Selected Images setion -->
+                <div class="col-lg-12">
+                  <div class="uploaded_images_erap">
+                  <span
+                    class="selImg"
+                    *ngFor="let image of selImages; let i = index"
+                  >
+                    <!-- <img
+                      src="data:image/jpeg;base64,{{ image?.attachment }}"
+                      *ngIf="!id.length"
+                    /> -->
+                    <img src="{{ image?.src }}" />
+                    <i
+                      nz-icon
+                      class="closeIcon"
+                      (click)="deleteImage(image)"
+                      nzType="close-circle"
+                      nzTheme="outline"
+                    ></i>
+                  </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <!-- <div class="dash-card" *ngIf="!id.length"> -->
+            <div class="dash-card">
+              <div class="dash-head">
+                <h3 class="card-title">Product Variation</h3>
+              </div>
+
+              <div>
+                <div
+                  *ngFor="let prod of prodVariations; let ind = index"
+                  class="variation-card"
+                >
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-label">Option Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          [(ngModel)]="prod.option1"
+                          [ngModelOptions]="{ standalone: true }"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-label">Price</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          [(ngModel)]="prod.price"
+                          [ngModelOptions]="{ standalone: true }"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-label">SKU</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          [(ngModel)]="prod.sku"
+                          [ngModelOptions]="{ standalone: true }"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="product-action">
+                      <button
+                        nz-button
+                        [nzSize]="'small'"
+                        nzType="dashed"
+                        (click)="deleteVariation(prod)"
+                        class="del-btn atc-btn"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        nz-button
+                        [nzSize]="'small'"
+                        nzType="dashed"
+                        (click)="udateVariation(prod)"
+                        class="save-btn atc-btn"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="btn-wrap mt-4" *ngIf="!isNewVariant">
+                  <button
+                    type="button"
+                    class="cstm-btn"
+                    (click)="addNewVariant()"
+                  >
+                    Add new variant
+                  </button>
+                </div>
+
+                <div *ngIf="isNewVariant" class="variation-card">
+                  <form [formGroup]="variantForm">
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-label">Option Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="option1"
+                          />
+                        </div>
+                        <div
+                          *ngIf="
+                            variantForm.get('option1').invalid &&
+                            variantForm.get('option1').touched
+                          "
+                          class="input-error"
+                        >
+                          <div
+                            *ngIf="variantForm.get('option1').errors.required"
+                          >
+                            Option name is required.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-label">Price</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            formControlName="price"
+                          />
+                        </div>
+                        <div
+                          *ngIf="
+                            variantForm.get('price').invalid &&
+                            variantForm.get('price').touched
+                          "
+                          class="input-error"
+                        >
+                          <div *ngIf="variantForm.get('price').errors.required">
+                            Price is required.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-label">SKU</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="sku"
+                          />
+                        </div>
+                        <div
+                          *ngIf="
+                            variantForm.get('sku').invalid &&
+                            variantForm.get('sku').touched
+                          "
+                          class="input-error"
+                        >
+                          <div *ngIf="variantForm.get('sku').errors.required">
+                            SKU is required.
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class=""> -->
+                        <!-- <div class="form-group"> -->
+                          <div class="product-action">
+                          <button
+                            nz-button
+                            [nzSize]="'small'"
+                            class="save-btn atc-btn"
+                            (click)="submitVariant()"
+                          >
+                            save
+                          </button>
+                        </div>
+                      <!-- </div> -->
+                    </div>
+                  </form>
+                </div>
+
+                <!-- <div class="btn-icon-grp d-f a-i-c">
+                  <span class="icon-btn" *ngIf="prodVariations.length > 1"
+                    ><i
+                      nz-icon
+                      nzType="delete"
+                      nzTheme="outline"
+                      (click)="removeVariation()"
+                    ></i>
+                  </span>
+                  <span class="icon-btn">
+                    <i
+                      nz-icon
+                      nzType="appstore-add"
+                      nzTheme="outline"
+                      (click)="addVariation()"
+                    ></i>
+                  </span>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

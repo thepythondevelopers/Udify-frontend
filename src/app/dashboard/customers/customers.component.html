@@ -1,0 +1,129 @@
+<div class="dash-content-wrap customer-p">
+  <div class="dash-content-head d-f j-c-s-b a-i-c">
+    <h3 class="dash-title">Customers</h3>
+    <!--<a [routerLink]="['/dashboard/add-customer']" class="cstm-btn" 
+    *ngIf="modelS.allStores.length">Add New Customer</a
+    >-->
+    <div class="datepicker-group">
+      <nz-range-picker
+        [nzFormat]="dateFormat"
+        [(ngModel)]="filterDate"
+        (ngModelChange)="getCustomers()"
+      ></nz-range-picker>
+    </div>
+    <div class="table-filter-row d-f j-c-s-b" *ngIf="modelS.allStores.length">
+      <div class="input_wrap">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+          <input
+            type="text"
+            class="form-control"
+            nz-input
+            placeholder="Search"
+            [(ngModel)]="searchtext"
+          />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+          <button class="search-btn" nzSearch (click)="getCustomers()">
+            <i nz-icon nzType="search"></i>
+          </button>
+        </ng-template>
+      </div>
+    </div>
+    <div class="datepicker-group cstm-select">
+      <nz-select [(ngModel)]="dateRange" placeholder="Date Range" (ngModelChange)="dateRangeChanges()">
+        <nz-option nzValue="" nzLabel="Date Range" nzDisabled></nz-option>
+        <nz-option nzValue="week" nzLabel="This Week"></nz-option>
+        <nz-option nzValue="month" nzLabel="This Month"></nz-option>
+        <nz-option nzValue="year" nzLabel="This Year"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+
+  <!-- <div nz-row>
+      <div nz-col nzSpan="8">
+      
+        <div>
+          <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" nz-input placeholder="Search" [(ngModel)]="searchtext" />
+          </nz-input-group>
+          <ng-template #suffixIconButton>
+            <button nz-button nzType="primary" nzSearch (click)="getCustomers()">
+              <i nz-icon nzType="search"></i>
+            </button>
+          </ng-template>
+        </div>
+     
+      </div>
+      <div nz-col nzSpan="16">
+        <nz-range-picker [nzFormat]="dateFormat" [(ngModel)]="filterDate" (ngModelChange)="getCustomers()"></nz-range-picker>
+      </div>
+    </div> -->
+
+  <div class="dash-content-body customer-p">
+    <div class="table-card">
+      <nz-table
+        class="table dash-table"
+        #customersTable
+        [nzData]="customers"
+        [nzShowPagination]="false"
+      >
+        <thead>
+          <tr>
+            <!-- <th>S.No.</th> -->
+            <th class="table-head-color">Name</th>
+            <th class="table-head-color">Date</th>
+            <th class="table-head-color">Address</th>
+            <th class="table-head-color">Email</th>
+            <th class="table-head-color">Store</th>
+            <th class="table-head-color">Status</th>
+            <th class="table-head-color">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cust of customersTable.data; let i = index">
+            <!-- <td>{{ page * (i + 1) }}</td> -->
+            <td>{{ cust?.first_name }} {{ cust?.last_name }}</td>
+            <td>{{ cust?.created_at | date: "MMM d, y" }}</td>
+            <td>{{ cust?.province }} {{ cust?.country }}</td>
+            <td>{{ cust?.email }}</td>
+            <td>{{ getStoreName(cust) }}</td>
+            <td><span class="badge bg-success">Active</span></td>
+            <td>
+              <div class="table-action d-f a-i-c">
+                <a
+                  [routerLink]="['/dashboard/customer', cust?._id]"
+                  class="icon-btn"
+                  ><i class="fas fa-eye"></i
+                ></a>
+                <a
+                  [routerLink]="['/dashboard/edit-customer', cust?._id]"
+                  class="icon-btn"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <a
+                  href="javascript:void(0);"
+                  class="icon-btn danger-icon remve"
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure delete this customer?"
+                  (nzOnConfirm)="confirmDelete(cust)"
+                  ><i class="fa fa-trash-alt"></i
+                ></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-pagination
+        [nzPageIndex]="page"
+        [nzTotal]="total"
+        (nzPageIndexChange)="paginate($event)"
+      ></nz-pagination>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

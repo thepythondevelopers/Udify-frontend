@@ -1,0 +1,99 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b a-i-c">
+    <h3 class="dash-title">Store Product</h3>
+    <!-- <label nz-checkbox [(ngModel)]="api.isManualProducts" (ngModelChange)="checkManualProducts()">Show Manual Products</label> -->
+  </div>
+
+  <div class="dash-content-body">
+    <div class="row" >
+      <div class="col-lg-6 w-100 d-f a-i-c">
+        <div class="dash-filter-bar w-100" >
+          <div class="search-input-wrap" *ngIf="modelS.allStores.length">
+            <input
+              type="text"
+              [(ngModel)]="searchtext"
+              nz-input
+              placeholder="Search Product"
+            />
+            <button
+              nz-button
+              nzType="primary"
+              nzSearch
+              (click)="page = 1; getProducts()"
+            >
+              <span nz-icon nzType="search"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-lg-6 w-100 d-f a-i-c j-c-f-e">
+        <div class="form-group">
+          <label class="form-label">Upload Product(CSV)</label>
+          <div class="w-100 d-flex a-i-c">
+            <input
+              id="csv-inpt"
+              type="file"
+              class="form-control upload_csv_inpt"
+              accept=".csv"
+              (change)="selectedCSV($event.target.files)"
+            />
+            <button nz-button nzType="primary" class="upload_csv_btn" (click)="uploadCSV()">
+              <span nz-icon nzType="upload"></span>
+            </button>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="products-block" *ngIf="products.length">
+      <div class="row">
+        <div
+          class="col-cstm"
+          *ngFor="let prod of products; let i = index"
+        >
+          <div class="product-card">
+            <figure class="product-img">
+              <img
+                src="{{ getProductImage(prod) }}"
+                onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                alt=""
+                *ngIf="prod.images"
+              />
+              <a
+                href="javascript:void(0);"
+                class="cstm-theme-icon"
+                (click)="addProductToCatalog(prod)"
+                ><i class="far fa-plus"></i
+              ></a>
+            </figure>
+            <div class="product-des">
+              <a href="javascript:void(0);" class="normal-link mb-3">{{
+                prod?.title
+              }}</a>
+              <h3>{{ prod?.product_type }}</h3>
+              <!-- <div class="pd-bottom-bar">
+                <div class="d-f a-i-c location-bar">
+                  <span class="icon mr-2"
+                    ><i class="fas fa-map-marker-alt"></i
+                  ></span>
+                  <h4>Vendor’s address goes here</h4>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <nz-pagination
+        [nzPageIndex]="page"
+        [nzTotal]="total"
+        (nzPageIndexChange)="paginate($event)"
+      ></nz-pagination>
+    </div>
+    <nz-empty *ngIf="!products.length"></nz-empty>
+  </div>
+</div>
+<!-- <ngx-ui-loader
+    [fgsType]="api?.loaderType"
+    [fgsColor]="api?.loaderColor"
+    [pbColor]="api?.loaderColor"
+    [fgsSize]="'80'"
+  ></ngx-ui-loader> -->

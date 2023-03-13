@@ -1,0 +1,31 @@
+@import url(../dashboard.component.css);
+.table-head-color{
+    background: #363636;
+    color: #ffff;
+    text-align: center;
+  }
+  td{
+    text-align: center;
+  }
+  .bg-success{
+    color: #28a745!important;
+    background-color: transparent!important;
+    font-size: 14px!important;
+  }
+  .bg-fail{
+    color: #FF0000!important;
+    background-color: #ffff!important;
+  }
+  .fa-trash-o{
+    color:#FF0000;
+    font-size: 24px;
+  }
+  .fa-eye{
+    font-size: 24px;
+    font-weight: 100;
+  }
+  .fa-edit{
+    font-size: 24px;
+    color:#46BFA8;
+    font-weight: 100;
+  }

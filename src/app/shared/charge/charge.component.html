@@ -1,0 +1,32 @@
+  <div class="card-js" id="my-card">
+    <input class="card-number my-custom-class" name="card-number">
+    <input class="name" id="the-card-name-id" name="card-holders-name" placeholder="Name on card">
+    <input class="expiry-month" name="expiry-month">
+    <input class="expiry-year" name="expiry-year">
+    <input class="cvc" name="cvc" type="password">
+  </div>
+  <br>
+  <div style="margin-bottom: 10px;">Address</div>
+  <div class="int_pay_form card-js" id="my-card">
+    <form #int_pay="ngForm" (ngSubmit)="int_pay_form(int_pay.value)">
+        <input class="address" name="address" type="text" placeholder="Locality" ngModel/>
+    <div style="display: flex;margin-top: 15px;">
+        <input class="postal_code" name="postal_code" type="text" placeholder="Postal code" ngModel/>
+        <input class="city" name="city" type="text" placeholder="City" ngModel/>
+    </div>
+    <div style="display: flex;margin-top: 15px;margin-bottom: 15px;">
+        <input class="state" name="state" type="text" placeholder="State" ngModel/>
+        <input class="country" name="country" type="text" placeholder="Country" ngModel/>
+    </div>
+    <button style="float: right;" nz-button nzType="primary" type="submit">OK</button>
+    </form>
+  </div>
+  <button nz-button nzType="primary" id="submit-button" type="submit" (click)="checkout()">
+    Pay Now
+  </button>
+  <ngx-ui-loader
+    [fgsType]="api?.loaderType"
+    [fgsColor]="api?.loaderColor"
+    [pbColor]="api?.loaderColor"
+    [fgsSize]="'80'"
+  ></ngx-ui-loader>

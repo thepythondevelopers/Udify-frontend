@@ -1,0 +1,137 @@
+<div class="dash-content-wrap">
+  <div class="dash-content-head d-f j-c-s-b a-i-c">
+    <h3 class="dash-title">Catalog Orders </h3>
+    <!-- <label nz-checkbox [(ngModel)]="api.isUserOrders" (ngModelChange)="checkUserOrder()">Show User Orders</label> -->
+    <!-- <h5><span class="tb-dated mr-3"><i class="fas fa-calendar-alt mr-2"></i>31 jul 2020</span> To <span class="tb-dated ml-3"><i class="fas fa-calendar-alt mr-2"></i>31 jul 2020</span></h5> -->
+  </div>
+
+  <!-- <div class="table-filter-row d-f j-c-s-b mb-4">
+    <div class="input_wrap">
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input
+          type="text"
+          class="form-control"
+          nz-input
+          placeholder="Search"
+          [(ngModel)]="searchtext"
+        />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button class="search-btn" nzSearch (click)="getOrders()">
+          <i nz-icon nzType="search"></i>
+        </button>
+      </ng-template>
+    </div>
+    <div class="datepicker-group">
+      <nz-range-picker
+        [nzFormat]="dateFormat"
+        [(ngModel)]="filterDate"
+        (ngModelChange)="getOrders()"
+      ></nz-range-picker>
+    </div>
+    <div class="datepicker-group cstm-select">
+      <nz-select
+        [(ngModel)]="dateRange"
+        placeholder="Date Range"
+        (ngModelChange)="dateRangeChanges()"
+      >
+        <nz-option nzValue="" nzLabel="Date Range" nzDisabled></nz-option>
+        <nz-option nzValue="week" nzLabel="This Week"></nz-option>
+        <nz-option nzValue="month" nzLabel="This Month"></nz-option>
+        <nz-option nzValue="year" nzLabel="This Year"></nz-option>
+      </nz-select>
+    </div>
+  </div> -->
+
+  <div class="dash-content-body">
+    <div class="table-card">
+      <nz-table
+        class="table dash-table"
+        #ordersTable
+        [nzData]="orders"
+        [nzShowPagination]="false"
+      >
+        <tbody>
+          <tr *ngFor="let order of ordersTable.data;let i = index">
+            <nz-modal
+  [(nzVisible)]="confirm_cancel"
+  nzClassName="custom_nzmodal"
+  nzTitle="Confirm?"
+  nzOkText="Cancel Order"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="cancel_order()"
+>
+  <ng-container *nzModalContent>
+    <p>Are you sure you want to cancel this order?</p>
+  </ng-container>
+</nz-modal>
+            <div class="products_box">
+                <div>
+                    <button (click)="getCustomer(customers_id[i])" class="options"><img src="assets/images/chat_icon.png" alt="chat_icon"/></button>
+                    <button class="options eye" [routerLink]="['/vendor/payment-details']"><img src="assets/images/eye-icon.png" alt="eye-icon.png"/></button>
+                    <button (click)="order_cancelled(customer_email[i],order.shopify_order_id)" class="options"><img src="assets/images/recycle bin.jpg" alt="recycle_Bin"/></button>
+                </div>
+                <div class="buttons">
+                    <button (click)="order_cancelled(customer_email[i],order.shopify_order_id)" class="cancel">Cancel Order</button>
+                    <button *ngIf="status[i]==='Unpaid'" (click)="request_payment(customer_email[i],order.shopify_order_id)" class="request">Request Payment</button>
+                    <button class="full">fulfillment</button>
+                </div>
+                <div style="display:flex">
+                <div class="img-box">
+                  <img class="prd_img" *ngIf="images[i]!==''"
+                            src="{{ images[i] }}"
+                            onerror="this.onerror=null;this.src='assets/images/nophoto.jpg';"
+                          />
+                      <img class="prd_img" *ngIf="images[i]===''"
+                          src="assets/images/nophoto.jpg"
+                        />
+                </div>
+                <div style="padding-left: 20px;">
+                <div class="pd prd_name">{{ order?.name }}</div>
+                <div class="pd cust_name">{{customers[i]}}</div>
+                <div class="pd cust_name_text">Customer Name</div>
+                <div class="pd price">{{ order?.total | currency: order.currency }}</div>
+                </div>
+                </div>
+                <div class="tr">tracking number: 456526564525</div>
+            </div>
+        <!--<td>{{ order?.name }}</td>-->
+        <!-- <td>{{order?.store_name || 'N/A'}}</td>
+          <td>{{order?.sku || 'N/A'}}</td>
+          <td>{{order?.supplier || 'N/A'}}</td>
+          <td>{{order?.supplier_order || 'N/A'}}</td> -->
+        <!--<td>{{ order?.total | currency: order.currency }}</td>
+        <td>
+          {{ order?.total_line_items_price | currency: order.currency }}
+        </td>
+        <td>
+          {{ order?.total_tax | currency: order.currency }}
+      </td>
+        <td>
+          <div class="table-action d-f a-i-c">
+            <a
+              [routerLink]="['/vendor/order', order?._id]"
+              class="icon-btn"
+              ><i class="fas fa-eye"></i
+            ></a>-->
+            <!-- <a [routerLink]="['/dashboard/edit-order', order?.guid]" class="icon-btn"><i class="fas fa-edit"></i></a>
+              <a href="javascript:void(0);" class="icon-btn danger-icon"><i class="fas fa-trash-alt"></i></a> -->
+          <!--</div>
+        </td>-->
+      </tr>
+        </tbody>
+      </nz-table>
+      <nz-pagination
+        [nzPageIndex]="page"
+        [nzTotal]="total"
+        (nzPageIndexChange)="paginate($event)"
+      ></nz-pagination>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>

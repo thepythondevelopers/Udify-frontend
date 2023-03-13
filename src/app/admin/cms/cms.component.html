@@ -1,0 +1,80 @@
+<div class="dash-content-wrap">
+    <div class="dash-content-head d-f j-c-s-b a-i-c mb-5">
+      <h3 class="dash-title">CMS Pages</h3>
+    </div>
+  
+    <div class="dash-content-body">
+      <div class="table-card">
+        <nz-table
+          class="table dash-table"
+          [nzShowPagination]="false"
+          [nzNoResult]="null"
+        >
+          <thead>
+            <tr>
+              <th>S.No.</th>
+              <th>Pages</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Home Page</td>
+              <td>
+                <div class="table-action d-f a-i-c">
+                  <a
+                    [routerLink]="['/admin/cms/', 'home']"
+                    class="icon-btn"
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>1</td>
+              <td>Become a partner</td>
+              <td>
+                <div class="table-action d-f a-i-c">
+                  <a
+                    [routerLink]="['/admin/cms/', 'becomePartner']"
+                    class="icon-btn"
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>1</td>
+              <td>Pricing & Plans</td>
+              <td>
+                <div class="table-action d-f a-i-c">
+                  <a
+                    [routerLink]="['/admin/cms/', 'pricingPlans']"
+                    class="icon-btn"
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>1</td>
+              <td>Support</td>
+              <td>
+                <div class="table-action d-f a-i-c">
+                  <a
+                    [routerLink]="['/admin/cms/', 'support']"
+                    class="icon-btn"
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>

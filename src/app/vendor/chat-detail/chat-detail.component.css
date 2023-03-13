@@ -1,0 +1,12 @@
+@import url(../vendor.component.css);   
+
+.nf{
+    position: absolute;
+    margin-top: -17px;
+    margin-right: -10px;
+    background-color: #dada13;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    padding-left: 5px;
+}

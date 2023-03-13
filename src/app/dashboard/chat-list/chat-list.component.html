@@ -1,0 +1,25 @@
+<div class="chat_list_outer custom-scroll cursor-pointer">
+  <div class="center_spinner" *ngIf="loading">
+    <nz-spin nzTip="Loading..." >
+    </nz-spin>
+  </div>
+  <nz-list nzItemLayout="horizontal" *ngIf="!loading">
+    <nz-list-item *ngFor="let chat of chatList" class="chat_list_item" [ngClass]="chat.selected ? 'selected' : ''" (click)="showChat(chat)">
+      <nz-list-item-meta
+        nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+        nzDescription="10:59PM" class="position-relative"
+      >
+        <nz-list-item-meta-title>
+          <span class="user_status" *ngIf="chat.user_status==='Active'"></span>
+          <span class="user_inactive_status" *ngIf="chat.user_status!=='Active'"></span>
+          <!-- <span class="chat_time">10:59PM</span> -->
+          <span class="chat_title_contain">
+            <h5 class="chat_title">{{chat.first_name}} {{chat.last_name}}</h5>
+          </span>
+          <p class="last_message">{{chat.email}}</p>
+        </nz-list-item-meta-title>
+      </nz-list-item-meta>
+    </nz-list-item>
+    <!-- <nz-list-empty *ngIf="!chatList.length"></nz-list-empty> -->
+  </nz-list>
+</div>

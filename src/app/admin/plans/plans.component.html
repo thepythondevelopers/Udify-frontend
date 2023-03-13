@@ -1,0 +1,71 @@
+<div class="dash-content-wrap">
+    <div class="dash-content-head d-f j-c-s-b a-i-c mb-5">
+      <h3 class="dash-title">Plans</h3>
+      <button class="search-btn main-btn" [routerLink]="['/admin/plans/add']">
+        <i class="fas fa-plus"></i
+            >
+      </button>
+    </div>
+  
+    <div class="dash-content-body">
+      <div class="table-card">
+        <nz-table
+          class="table dash-table"
+          #plansTable
+          [nzData]="plans"
+          [nzShowPagination]="false"
+        >
+          <thead>
+            <tr>
+              <!-- <th>S.No.</th> -->
+              <th>Title</th>
+              <th>Price</th>
+              <th>Type</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let plan of plansTable.data; let i = index">
+              <!-- <td>{{ i + 1 }}</td> -->
+              <td>{{ plan?.name || 'N/A' }}</td>
+              <td>{{ plan?.price || 'N/A' }}</td>
+              <td>{{ plan?.type || 'N/A' }}</td>
+              <td>
+                <div class="table-action d-f a-i-c">
+                  <a
+                    [routerLink]="['/admin/plans/edit', plan?.app_id]"
+                    class="icon-btn"
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                  <!-- <a
+                  href="javascript:void(0);"
+                  class="icon-btn danger-icon"
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure delete this plan?"
+                  (nzOnConfirm)="confirmDelete(plan)"
+                  ><i class="fas fa-trash-alt"></i
+                ></a> -->
+                <nz-switch
+                [(ngModel)]="plan.status"
+                (ngModelChange)="planStatusChange(plan, $event)"
+              ></nz-switch>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+        <nz-pagination
+          [nzPageIndex]="page"
+          [nzTotal]="total"
+          (nzPageIndexChange)="paginate($event)"
+        ></nz-pagination>
+      </div>
+    </div>
+  </div>
+  <ngx-ui-loader
+    [fgsType]="api?.loaderType"
+    [fgsColor]="api?.loaderColor"
+    [pbColor]="api?.loaderColor"
+    [fgsSize]="'80'"
+  ></ngx-ui-loader>
+  

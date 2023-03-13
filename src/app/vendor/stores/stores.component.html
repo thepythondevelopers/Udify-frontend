@@ -1,0 +1,39 @@
+<div class="dash-content-wrap">
+    <div class="dash-content-head d-f j-c-s-b a-i-c mb-5">
+      <h3 class="dash-title">STORES</h3>
+      <a [routerLink]="['/dashboard/connect-to-shopify']" class="cstm-btn">Add New Store</a>
+    </div>
+    <div class="dash-content-body">
+      <div class="table-card">
+        <nz-table class="table dash-table" #storesTable [nzData]="stores">
+          <thead>
+            <tr>
+              <!-- <th>ID</th> -->
+              <th>Name</th>
+              <th>Sync Products</th>
+              <!-- <th>Sync Customers</th> -->
+              <th>Sync Orders</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let store of storesTable.data">
+              <!-- <td>{{store?.store_id || 'N/A'}}</td> -->
+              <td>
+                <h6>{{store?.domain || 'N/A'}}</h6>
+              </td>
+              <td>
+                <a href="javascript:void(0);" class="icon-btn danger-icon" (click)="sync('product', store)"><i nz-icon nzType="cloud-sync" nzTheme="outline"></i></a>
+              </td>
+              <!-- <td>
+                <a href="javascript:void(0);" class="icon-btn danger-icon" (click)="sync('customer', store)"><i nz-icon nzType="cloud-sync" nzTheme="outline"></i></a>
+              </td> -->
+              <td>
+                <a href="javascript:void(0);" class="icon-btn danger-icon" (click)="sync('order', store)"><i nz-icon nzType="cloud-sync" nzTheme="outline"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+<ngx-ui-loader [fgsType]="api?.loaderType" [fgsColor]="api?.loaderColor" [pbColor]="api?.loaderColor"  [fgsSize]="'80'"></ngx-ui-loader>

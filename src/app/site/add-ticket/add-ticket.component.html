@@ -1,0 +1,197 @@
+<section class="suport-cate-sec">
+  <div class="container" *ngIf="!ticketId.length">
+    <div class="sec-heading mb-5 text-center">
+      <h2>
+        {{
+          path == "add" && !category.length
+            ? "What can we help you with?"
+            : "Submit a Support Request"
+        }}
+      </h2>
+    </div>
+    <ul class="ticket-check-list" *ngIf="path == 'add' && !category.length">
+      <li>
+        <a
+          href="javascript:void(0);"
+          (click)="chooseCategory('general')"
+          class="ticket-check-btn"
+          ><span class="ticket--btn-icon"
+            ><i nz-icon nzType="file-add" nzTheme="outline"></i
+          ></span>
+          <h4>General</h4>
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="javascript:void(0);"
+          (click)="chooseCategory('support')"
+          class="ticket-check-btn"
+          ><span class="ticket--btn-icon"
+            ><i nz-icon nzType="file-add" nzTheme="outline"></i
+          ></span>
+          <h4>Support</h4>
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="javascript:void(0);"
+          (click)="chooseCategory('advertising')"
+          class="ticket-check-btn"
+          ><span class="ticket--btn-icon"
+            ><i nz-icon nzType="file-add" nzTheme="outline"></i
+          ></span>
+          <h4>Advertising</h4>
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="javascript:void(0);"
+          (click)="chooseCategory('billing')"
+          class="ticket-check-btn"
+          ><span class="ticket--btn-icon"
+            ><i nz-icon nzType="file-add" nzTheme="outline"></i
+          ></span>
+          <h4>Billing</h4>
+        </a>
+      </li>
+    </ul>
+    <div class="support-req-block" *ngIf="path == 'add' && category.length">
+      <form [formGroup]="ticketForm" (ngSubmit)="submitForm()">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                placeholder="Enter Your Name"
+              />
+              <div
+                *ngIf="
+                  ticketForm.get('name').invalid &&
+                  ticketForm.get('name').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="ticketForm.get('name').errors.required">
+                  Name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="Enter Your Email"
+              />
+              <div
+                *ngIf="
+                  ticketForm.get('email').invalid &&
+                  ticketForm.get('email').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="ticketForm.get('email').errors.required">
+                  Email is required.
+                </div>
+
+                <div *ngIf="ticketForm.get('email').errors.email">
+                  Please enter valid email.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="subject"
+                placeholder="Enter Your Subject"
+              />
+              <div
+                *ngIf="
+                  ticketForm.get('subject').invalid &&
+                  ticketForm.get('subject').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="ticketForm.get('subject').errors.required">
+                  Subject is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-label">Attachments</label>
+              <input
+                type="file"
+                class="form-control"
+                id="attachment"
+                accept="image/png, image/jpg, image/jpeg"
+                (change)="attachment($event.target)"
+              />
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea
+                rows="4"
+                nz-input
+                class="form-control"
+                formControlName="message"
+              ></textarea>
+              <div
+                *ngIf="
+                  ticketForm.get('message').invalid &&
+                  ticketForm.get('message').touched
+                "
+                class="input-error"
+              >
+                <div *ngIf="ticketForm.get('message').errors.required">
+                  Message is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-wrap mt-3 text-center">
+          <button type="button" class="cstm-btn" (click)="submitForm()">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <nz-result
+    *ngIf="ticketId.length"
+    nzStatus="success"
+    nzTitle="Ticket submitted"
+    nzSubTitle="Your ticket has been successfully submitted! Ticket ID: {{ticketId}}"
+  >
+    <div nz-result-extra>
+      <button nz-button nzType="primary" (click)="viewTicket()">View your ticket</button>
+      <!-- <button nz-button>Buy Again</button> -->
+    </div>
+  </nz-result>
+</section>
+
+<ngx-ui-loader
+  [fgsType]="api?.loaderType"
+  [fgsColor]="api?.loaderColor"
+  [pbColor]="api?.loaderColor"
+  [fgsSize]="'80'"
+></ngx-ui-loader>
