@@ -120,16 +120,13 @@ export class DashboardComponent implements OnInit {
   }
 
   notification(){
-    console.log("email::",JSON.parse(localStorage.getItem("user")).email)
-    if(JSON.parse(localStorage.getItem("user")).email){
-      this.api.get('aware-node/get-notification/'+JSON.parse(localStorage.getItem("user")).email, {}).subscribe(
+      this.api.get('aware-node/get-notification', {}).subscribe(
         async (data: any) => {
           if(data){
             this.no_of_notf = data.notification.length;
           }
         }
       )
-    }
   }
 
   getProfile() {

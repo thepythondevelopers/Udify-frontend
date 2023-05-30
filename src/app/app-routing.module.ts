@@ -54,7 +54,6 @@ const routes: Routes = [
   { path: 'vendor/forgot-password', component: ForgetComponent },
   { path: 'vendor/reset-password/:token', component: resetPasswordComponent },
 
-
   // { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 

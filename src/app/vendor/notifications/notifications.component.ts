@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { ChatComponent } from '../chat/chat.component';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ChatComponent } from '../chat/chat.component';
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css','../../../assets/css/bootstrap.min.css']
+  styleUrls: ['./notifications.component.css','./notifications.component.css','../../../assets/css/bootstrap.min.css']
 })
 export class NotificationsComponent implements OnInit {
+
   notf: any=[];
   vendor: any;
-
-  totalntf:Number;
-  page:Number=1;
+  customer: any = {};
 
   constructor(
     public api: ApiService,
@@ -43,11 +42,11 @@ export class NotificationsComponent implements OnInit {
   }
   
   chat() {
-    console.log("this vendor::",this.vendor);
+    console.log("customer data::",this.customer);
     let modal = this.modal.create({
       nzTitle: '',
       nzContent: ChatComponent,
-      nzComponentParams: { vendor: this.vendor },
+      nzComponentParams: { customer :this.customer },
       nzClosable: false,
       nzClassName: 'custom_nzmodal chat_nzmodal',
       nzFooter: null,
@@ -56,8 +55,9 @@ export class NotificationsComponent implements OnInit {
     });
   }
 
-  getVendor(id:any) {
-    this.api.post('user-vendor-node/user-vendor/' + id, {}).subscribe(
+  getCustomer(id:any) {
+    console.log("customer id::",id);
+    this.api.post('vendor-customer-node/get-user-customer/' + id, {}).subscribe(
       (data: any) => {
         if (data.hasOwnProperty('error')) {
           this.api.showToast('error', data.error);
@@ -65,17 +65,17 @@ export class NotificationsComponent implements OnInit {
         }
         if (data && Object.keys(data).length) {
           console.log('Customer data:: ', data);
-          this.vendor = data.hasOwnProperty('_id') ? data : data.data;
-          console.log("ven::",this.vendor);
+          this.customer = data.hasOwnProperty('_id') ? data : data[0];
+          console.log("this.customer::",this.customer)
           this.chat();
         } else {
-          this.vendor = {};
+          this.customer = {};
         }
         this.ngxService.stop();
       },
       (err) => {
         this.ngxService.stop();
-        this.vendor = {};
+        this.customer = {};
         console.log('Login err:: ', err);
         this.api.showToast('error', err.error.error);
       }
@@ -87,10 +87,10 @@ export class NotificationsComponent implements OnInit {
         async (data: any) => {
           if(data){
             this.notf = data.notification.reverse();
-            this.totalntf = this.notf.length;
           }
         }
       )
   }
+
 
 }

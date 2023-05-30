@@ -19,6 +19,8 @@ import { AuthGuard } from './services/auth.guard';
 import { StoresComponent } from './stores/stores.component';
 import { VendorComponent } from './vendor.component';
 import { VendorsComponent } from './vendors/vendors.component';
+import { ProductGalleryComponent } from '../product-gallery/product-gallery.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -37,7 +39,7 @@ const routes: Routes = [
 
       //{ path: 'orders', component: OrdersComponent },
       { path: 'order/:id', component: OrderComponent },
-
+      {path: 'notifications', component: NotificationsComponent},
       { path: 'vendors', component: VendorsComponent },
       { path: 'pro-order', component: ProOrderComponent },
       { path: 'catalog', component: CatalogComponent },
@@ -46,6 +48,8 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'stores', component: StoresComponent },
       { path: 'connect-to-shopify', component: ConnectToShopifyComponent },
+
+      { path: 'product-gallery',component: ProductGalleryComponent },
 
       {
         path: '',

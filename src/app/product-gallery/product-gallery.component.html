@@ -1,0 +1,54 @@
+<form [formGroup]="myForm" (ngSubmit)="prd_img_data()">
+  <div class="form-group">
+    <label for="file">Add Image</label>
+    <input
+      formControlName="file"
+      id="file"
+      type="file"
+      multiple
+      class="form-control"
+      (change)="uploadPicChanged($event)"
+    />
+    <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+      <div *ngIf="f.file.errors && f.file.errors.required">
+        File is required.
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+<h2>All the images</h2>
+<div
+  class="justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3"
+>
+  <div class="row">
+    <div *ngFor="let images of imageurl" class="col-md-3">
+      <div class="card w-100">
+        <div class="card-img">
+          <img src="{{ fileurl }}{{ images }}" class="card-img-top" alt="..." />
+          <a
+            ><img
+              src="../../assets/images/delete.png"
+              class="delete-img"
+              alt="..."
+          /></a>
+        </div>
+        <div class="card-body">
+          <p class="card_img">
+            URL:{{ fileurl }}{{ images }}
+            <a>
+              <img
+                (click)="copy(fileurl + images)"
+                class="copy"
+                src="../../assets/images/copy.png"
+                alt="..."
+              />
+            </a>
+          </p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

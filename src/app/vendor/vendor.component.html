@@ -28,7 +28,7 @@
               </div>
             </li> -->
             <li>
-              <a href="javascript:void(0);" class="icon-button"
+              <a [routerLink]="['/vendor/notifications']" class="icon-button"
                 ><i class="fas fa-bell"></i
               ></a>
             </li>
@@ -134,6 +134,10 @@
         <li nz-menu-item [routerLink]="['/vendor/catalog']" [nzSelected]="menuItem == '/vendor/catalog'">
           <i nz-icon nzType="desktop" nzTheme="outline"></i>
           <span>Catalog</span>
+        </li>
+        <li nz-menu-item [routerLink]="['/vendor/product-gallery']">
+          <i nz-icon nzType="desktop" nzTheme="outline"></i>
+          <span>Product Gallery</span>
         </li>
       </ul>
     </nz-sider>

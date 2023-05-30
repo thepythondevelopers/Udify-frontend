@@ -9,6 +9,7 @@ import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { Observable, Observer } from 'rxjs';
 import { ViewChild } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-manual-products',
@@ -35,6 +36,7 @@ export class ManualProductsComponent implements OnInit {
 
   storeSub: any;
   dateRange: any = '';
+  fileurl: string;
   constructor(
     public api: ApiService,
     private eventS: EventService,
@@ -44,6 +46,7 @@ export class ManualProductsComponent implements OnInit {
     private changeRef: ChangeDetectorRef,
     private modal: NzModalService
   ) {
+    this.fileurl=environment.fileurl;
     this.storeSub = this.eventS.getChangedStore().subscribe(() => {
       this.ngxService.start();
       this.page = 1;
@@ -245,6 +248,10 @@ export class ManualProductsComponent implements OnInit {
           this.ngxService.stop();
         });
     }
+  }
+
+  sample(){
+
   }
 
   checkManualProducts() {

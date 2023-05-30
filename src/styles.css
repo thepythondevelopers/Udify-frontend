@@ -3191,3 +3191,24 @@ ul.slider-thumnail-list {
 }.catalog-p .fas.fa-eye {
 	color: #000000;
 }
+
+/*CSS BY RK 5 May, 2023*/
+.user-image {
+	width: 140px;
+	height: 140px;
+	object-fit: fill;
+}	.copy {
+	float: right;
+	right: 0;
+	position: absolute;
+	bottom: 0;
+}
+.card_img { 
+	position: relative; 
+}.delete-img {
+	position: absolute;
+	right: 4px;
+	top: 4px;
+}.card-img {
+	position: relative;
+}

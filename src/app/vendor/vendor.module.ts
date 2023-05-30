@@ -27,6 +27,8 @@ import { ChatListComponent } from './chat-list/chat-list.component';
 import { ChatDetailComponent } from './chat-detail/chat-detail.component';
 import { CatalogOrderComponent } from './catalog-order/catalog-order.component';
 import { PaymentDetailComponent } from './payment-detail/payment-detail.component';
+import { ProductGalleryComponent } from '../product-gallery/product-gallery.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { PaymentDetailComponent } from './payment-detail/payment-detail.componen
     ChatDetailComponent,
     CatalogOrderComponent,
     PaymentDetailComponent,
+    ProductGalleryComponent,
+    NotificationsComponent
   ],
   imports: [CommonModule, VendorRoutingModule, SharedModule],
   exports: [VendorComponent, SharedModule],

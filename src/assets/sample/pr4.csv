@@ -1,0 +1,10 @@
+Title,Body Html,Images,Product Type,Vendor,Variants,Status,Tags
+New Product 4,<strong>Good Hockey! </strong>,https://th.bing.com/th/id/OIP.lqznfPkCQ3uKn7cCVvWCeAHaEo?w=281&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7,Hockey ,Sam,"{
+""option1"" :""Blue2"",
+  ""sku"": ""123"",
+  ""price"" :""1.00""
+  },  {
+""option1"" : ""Blue8"",
+  ""sku"": ""129"",
+  ""price"" :""1.00""
+  }",active,"toy,sport"

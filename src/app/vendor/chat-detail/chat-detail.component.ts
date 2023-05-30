@@ -34,7 +34,7 @@ export class ChatDetailComponent implements OnInit {
   constructor(private chatService:chatService,private api: ApiService, private auth: AuthService) {
     this.chatService.get_vendor_chat().subscribe(data=>{
       console.log("data::",data)
-      this.messageArray.push(data)
+      this.messageArray.push(<any>data)
       this.messageNotification.push({notification:"new message"})
       console.log("message array::",this.messageArray)
     })
@@ -58,8 +58,8 @@ export class ChatDetailComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('changes:: ', changes);
-    console.log("customer id::",changes.chat.currentValue.account_id);
-    this.cust_id = changes.chat.currentValue.account_id;
+    console.log("customer id::",changes.chat.currentValue._id);
+    this.cust_id = changes.chat.currentValue._id;
     this.messages = [];
     if (Object.keys(this.chat).length) {
       this.loading = true;

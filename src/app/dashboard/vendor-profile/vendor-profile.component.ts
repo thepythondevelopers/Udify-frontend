@@ -254,7 +254,7 @@ export class VendorProfileComponent implements OnInit {
     if (this.agreementAccept) {
       this.ngxService.start();
       this.api
-        .post('aggrement-node/aggreement/' + this.vendor._id, {})
+        .post('agreement-node/aggreement/' + this.vendor._id, {})
         .subscribe(
           (data: any) => {
             if (data.hasOwnProperty('error')) {

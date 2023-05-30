@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+  
+      <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+      
+            <div class="row noti-card mb-4" *ngFor="let notifications of notf;let i = index">
+              <div class="col-2">
+              <img class="user" src="../../../assets/images/img.png" class="user-image" alt="..."/>
+              </div>
+              <div class="col-10">
+                <div class="content-noti">
+                  <p class="action-btns">
+                    <a (click)="delete_notf(notifications.notf_id)" class="action">
+                    <img class="action-img" src="../../../assets/images/del.png" alt="..."></a> 
+                    <!--<a href="#" class="action">
+                    <img class="action-img" src="../../../assets/images/view.png" alt="..."></a> -->
+                    <a class="action">
+                    <img (click)="getCustomer(notifications.id)" class="action-img" src="../../../assets/images/chat.png" alt="..."></a> 
+                </p>
+                  <h4>{{notifications.send_by}} ({{notifications.email}})</h4>
+                  <p class="mb-2"> {{notifications.body}}
+                  </p>
+                  <p class="text-gray">{{notifications.date}}</p>
+                </div>  
+       
+              </div>
+          </div>
+         
+       
+          </div>
+      </div>
+    
+    </div>
+  </div>
+  

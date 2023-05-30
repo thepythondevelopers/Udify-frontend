@@ -180,6 +180,9 @@ export class ProfileComponent implements OnInit {
               'https://f000.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=' +
                 data.account_id.cover.fileId
             );
+
+            console.log("profile form::",this.profileForm.get('cover').value)
+
           this.old_avatar_fileId = data.account_id.avatar.fileId;
           this.old_avatar_filename = data.account_id.avatar.filename;
 

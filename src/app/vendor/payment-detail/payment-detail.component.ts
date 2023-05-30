@@ -173,7 +173,7 @@ export class PaymentDetailComponent implements OnInit {
                     console.log("images array::",this.images);
                   }
                 );
-                this.api.post("order-node/catalog-order-customer-name",{"customer_id":data[0].data[i].user}).subscribe(
+                this.api.post("order-node/catalog-order-customer-name-email",{"customer_id":data[0].data[i].user}).subscribe(
                   (cust_data:any)=>{
                     if(cust_data){
                       console.log("customer name::",cust_data.customer_name)

@@ -151,6 +151,7 @@ export class CatalogComponent implements OnInit {
   }
 
   addProduct(prod) {
+    console.log("prod details::",prod);
     console.log('this.selectedProd:: ', prod.id);
     // return;
     this.upgradeModal(prod);
@@ -184,8 +185,8 @@ export class CatalogComponent implements OnInit {
       this.ngxService.start();
       this.api
         .post(
-          //'aggrement-node/check-aggreement/' + this.selectedProd.user_id._id,s
-          'aggrement-node/check-aggreement/' + this.selectedProd._id,
+          //'agreement-node/check-aggreement/' + this.selectedProd.user_id._id,s
+          'agreement-node/check-aggreement/' + this.selectedProd._id,
           {}
         )
         .subscribe((data: any) => {
@@ -220,7 +221,7 @@ export class CatalogComponent implements OnInit {
     if (this.agreementAccept) {
       this.ngxService.start();
       this.api
-        .post('aggrement-node/aggreement/' + this.selectedProd._id, {})
+        .post('agreement-node/aggreement/' + this.selectedProd._id, {})
         .subscribe(
           (data: any) => {
             if (data.hasOwnProperty('error')) {

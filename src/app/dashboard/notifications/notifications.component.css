@@ -1,7 +1,33 @@
-h3{
-    width: -webkit-fill-available;
+.user {
+	float: left;
+	margin-right: 0;
+	width: 150px;
+	height: 150px;
+	border-radius: 100%;
+}.noti-card {
+	background: #F9F9F9;
+	border: 1px solid #d9d9d9;
+	padding: 20px 0;
+	border-radius: 10px;
+	position:relative;
+}.text-gray {
+	color: #888888;
+}.action-btns {
+	position: absolute;
+	right: 5px;
+	top: -10px;
 }
-.notification_box{
-    width: -webkit-fill-available;
-    margin-top: 50px;
+.user-image{
+    border-radius: 50%;
+}
+.col-2{
+    width: 20% !important;
+    padding-top: 20px;
+}
+.col-10{
+    width: 80% !important;
+    line-height: 1.8;
+}
+.content-noti{
+    margin-top: 30px !important;
 }
